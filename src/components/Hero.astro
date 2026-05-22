@@ -1,0 +1,166 @@
+<section class="pt-14 pb-10">
+  <div
+    class="mb-7 flex items-center justify-between max-[500px]:flex-col max-[500px]:items-start max-[500px]:gap-2"
+  >
+    <span
+      class="flex items-center gap-2 text-[0.8rem] tracking-wide text-muted"
+    >
+      <span
+        class="h-[7px] w-[7px] shrink-0 rounded-full bg-secondary-400 dark:bg-secondary-500"
+        aria-hidden="true"></span>
+      Software Engineer
+    </span>
+    <span
+      class="badge flex items-center gap-1.5 rounded-full border px-3 py-1 text-[0.7rem] font-medium uppercase tracking-widest"
+    >
+      <span
+        class="badge-dot h-1.5 w-1.5 shrink-0 rounded-full"
+        aria-hidden="true"></span>
+      Open to opportunities
+    </span>
+  </div>
+
+  <div
+    class="flex items-start justify-between gap-8 max-[500px]:flex-col-reverse max-[500px]:gap-6"
+  >
+    <div class="min-w-0 flex-1">
+      <h1
+        class="mb-4 font-sans text-[clamp(2rem,5vw,2.75rem)] font-light leading-[1.15] tracking-tight text-ink"
+      >
+        I'm <span
+          class="font-display font-semibold text-[clamp(2.25rem,5.5vw,3rem)]"
+          >Oluwakayode.</span
+        >
+      </h1>
+
+      <p
+        class="mb-7 max-w-[440px] max-[500px]:max-w-full text-[0.9rem] leading-[1.75] text-muted"
+      >
+        I build full-stack web applications with a strong focus on server logic
+        and databases. I love figuring out complex systems to build cool,
+        interesting solutions, and I write technical articles to share what I
+        learn along the way. Currently sharpening my craft and looking for a
+        full-time role.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <a
+          href="/projects"
+          class="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-transparent bg-ink px-4 py-2.5 text-[0.8rem] font-medium text-surface no-underline transition-all hover:opacity-85"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
+          >
+          See my work
+        </a>
+        <button
+          id="copy-email"
+          class="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-line bg-transparent px-4 py-2.5 text-[0.8rem] font-medium text-muted transition-all hover:border-secondary-400 hover:text-ink dark:hover:border-secondary-600"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path
+              d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+            ></path></svg
+          >
+          <span id="copy-label">Copy email</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="shrink-0 mt-1" aria-hidden="true">
+      <div
+        class="h-[140px] w-[140px] overflow-hidden rounded-full border border-line"
+      >
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8I_m_kf6iq8JeoiETm7vX9yKD6DfBIdXEJA&s"
+          alt="mko"
+          class="block h-full w-full object-cover"
+          width="140"
+          height="140"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const btn = document.getElementById("copy-email");
+  const label = document.getElementById("copy-label");
+  const EMAIL = "michaelaykay@gmail.com";
+
+  btn?.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      if (label) {
+        label.textContent = "Copied!";
+        setTimeout(() => {
+          label.textContent = "Copy email";
+        }, 2000);
+      }
+    } catch {
+      window.location.href = `mailto:${EMAIL}`;
+    }
+  });
+</script>
+
+<style>
+  .badge {
+    color: #2d6a4f;
+    background-color: #d8f3dc;
+    border-color: #b7e4c7;
+  }
+  :global(.dark) .badge {
+    color: #95d5b2;
+    background-color: #1b3a2d;
+    border-color: #2d6a4f;
+  }
+  .badge-dot {
+    background-color: #52b788;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  @media (max-width: 500px) {
+    section {
+      padding-top: 2rem;
+    }
+    .flex.items-center.justify-between.gap-8 {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+    .flex.mb-7 {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+  }
+</style>

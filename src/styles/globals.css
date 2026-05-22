@@ -4,27 +4,44 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
-  --bg: #fdf9ef;
-  --text-primary: #1c1b19;
-  --text-secondary: #6b6760;
-  --border: #d9d4c7;
-  --hover: #1c1b1908;
+  --bg: theme("colors.secondary.light");
+  --text-primary: theme("colors.primary.text.light");
+  --text-secondary: theme("colors.secondary.400");
+  --border: theme("colors.secondary.200");
+
+  &.dark {
+    --bg: theme("colors.secondary.dark");
+    --text-primary: theme("colors.primary.text.dark");
+    --text-secondary: theme("colors.secondary.500");
+    --border: theme("colors.secondary.800");
+  }
 }
 
-.dark {
-  --bg: #1b1a18;
-  --text-primary: #faf1da;
-  --text-secondary: #9e9890;
-  --border: #2e2c28;
-  --hover: #faf1da08;
-}
-
-body {
-  background-color: var(--bg);
-  color: var(--text-primary);
-  font-family: 'DM Sans', sans-serif;
+html {
+  font-family: theme("fontFamily.sans");
   font-size: 15px;
   line-height: 1.6;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
   transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+::selection {
+  background-color: theme("colors.secondary.200");
+  color: theme("colors.primary.text.light");
+
+  .dark & {
+    background-color: theme("colors.secondary.800");
+    color: theme("colors.primary.text.dark");
+  }
 }

@@ -1,156 +1,126 @@
 ---
 const navLinks = [
-  { label: 'home',     href: '/'         },
-  { label: 'about',    href: '/about'     },
-  { label: 'projects', href: '/projects'  },
-  { label: 'writings', href: '/writings'  },
-  { label: 'tools',    href: '/tools'     },
-]
+  { label: "home", href: "/" },
+  { label: "about", href: "/about" },
+  { label: "projects", href: "/projects" },
+  { label: "writings", href: "/writings" },
+  { label: "tools", href: "/tools" },
+];
 
-const currentPath = Astro.url.pathname
+const currentPath = Astro.url.pathname;
 ---
 
-<header>
-  <nav>
-    <a href="/" class="wordmark" aria-label="mko — home">mko</a>
+<header
+  class="w-full sticky top-0 z-50 border-b border-line backdrop-blur-sm"
+  style="background-color: color-mix(in srgb, var(--bg) 92%, transparent);"
+>
+  <nav class="container flex h-[52px] items-center gap-8">
+    <a
+      href="/"
+      aria-label="mko — home"
+      class="font-display text-[1.35rem] font-semibold tracking-tight text-ink no-underline shrink-0 transition-opacity hover:opacity-70"
+    >
+      mko
+    </a>
 
-    <ul role="list" class="nav-links">
-      {navLinks.map((link, i) => (
-        <li class="nav-item">
-          {i > 0 && <span class="pipe" aria-hidden="true">|</span>}
-          <a
-            href={link.href}
-            class:list={['nav-link', { active: currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) }]}
-          >
-            {link.label}
-          </a>
-        </li>
-      ))}
+    <ul role="list" class="flex flex-1 items-center list-none">
+      {
+        navLinks.map((link, i) => (
+          <li class="flex items-center">
+            {i > 0 && (
+              <span
+                aria-hidden="true"
+                class="select-none px-[0.45rem] text-xs text-line"
+              >
+                |
+              </span>
+            )}
+            <a
+              href={link.href}
+              class:list={[
+                "text-[0.8rem] no-underline py-0.5 tracking-wide transition-colors duration-100",
+                currentPath === link.href ||
+                (link.href !== "/" && currentPath.startsWith(link.href))
+                  ? "text-ink font-medium"
+                  : "text-muted hover:text-ink",
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
     </ul>
 
+    <!-- theme toggle -->
     <button
       id="theme-toggle"
       aria-label="Toggle dark mode"
-      class="theme-btn"
+      class="ml-auto flex shrink-0 cursor-pointer items-center justify-center rounded-md border-none bg-transparent p-1.5 text-muted transition-all hover:text-ink hover:bg-secondary-100 dark:hover:bg-secondary-900"
     >
-      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      <svg
+        class="icon-moon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
       </svg>
-      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="5"/>
-        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      <svg
+        class="icon-sun"
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line><line
+          x1="12"
+          y1="21"
+          x2="12"
+          y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line
+          x1="18.36"
+          y1="18.36"
+          x2="19.78"
+          y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line><line
+          x1="21"
+          y1="12"
+          x2="23"
+          y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line
+          x1="18.36"
+          y1="5.64"
+          x2="19.78"
+          y2="4.22"></line>
       </svg>
     </button>
   </nav>
 </header>
 
 <style>
-  header {
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background-color: var(--bg);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    background-color: color-mix(in srgb, var(--bg) 92%, transparent);
+  .icon-sun {
+    display: none;
   }
-
-  nav {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-    height: 52px;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+  .icon-moon {
+    display: block;
   }
-
-  .wordmark {
-    font-family: 'Caveat', cursive;
-    font-size: 1.35rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    text-decoration: none;
-    letter-spacing: -0.01em;
-    flex-shrink: 0;
+  :global(.dark) .icon-sun {
+    display: block;
   }
-  .wordmark:hover {
-    opacity: 0.7;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    flex: 1;
-  }
-
-  .nav-item {
-    display: flex;
-    align-items: center;
-  }
-
-  .pipe {
-    color: var(--border);
-    padding: 0 0.45rem;
-    font-size: 0.8rem;
-    user-select: none;
-  }
-
-  .nav-link {
-    font-size: 0.8rem;
-    font-weight: 400;
-    letter-spacing: 0.01em;
-    color: var(--text-secondary);
-    text-decoration: none;
-    padding: 2px 0;
-    transition: color 0.1s ease;
-  }
-
-  .nav-link:hover,
-  .nav-link.active {
-    color: var(--text-primary);
-  }
-
-  .nav-link.active {
-    font-weight: 500;
-  }
-
-  .theme-btn {
-    margin-left: auto;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 6px;
-    border-radius: 6px;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.1s ease, background-color 0.1s ease;
-    flex-shrink: 0;
-  }
-
-  .theme-btn:hover {
-    color: var(--text-primary);
-    background-color: var(--hover);
-  }
-
-  .icon-sun  { display: none; }
-  .icon-moon { display: block; }
-
-  :global(.dark) .icon-sun  { display: block; }
-  :global(.dark) .icon-moon { display: none; }
-
-  @media (max-width: 480px) {
-    .pipe { padding: 0 0.3rem; }
-    nav { gap: 1rem; }
+  :global(.dark) .icon-moon {
+    display: none;
   }
 </style>

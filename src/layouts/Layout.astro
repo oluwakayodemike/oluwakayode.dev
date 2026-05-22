@@ -37,8 +37,7 @@ const { title = "mko", description = "Software engineer." } = Astro.props;
 
   <body>
     <Header />
-
-    <main>
+    <main class="container py-12">
       <slot />
     </main>
   </body>
@@ -53,11 +52,3 @@ const { title = "mko", description = "Software engineer." } = Astro.props;
     localStorage.setItem("theme", isDark ? "dark" : "light");
   });
 </script>
-
-<style>
-  main {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem;
-  }
-</style>
