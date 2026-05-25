@@ -1,0 +1,18 @@
+[
+  {
+    "name": "ReuniteAI",
+    "description": "AI-powered lost & found platform for university campuses featuring Intelligent agents using CLIP image embeddings and Kimi AI reasoning to reconnect students with their belongings.",
+    "website_url": "https://reuniteai.tech",
+    "github_url": "https://github.com/oluwakayodemike/ReuniteAI",
+    "status": "active",
+    "tags": ["Node.js", "OpenAI CLIP", "Kimi AI", "TiDB", "Clerk", "Cloudinary"]
+  },
+  {
+    "name": "EnDe-Crypt",
+    "description": "CLI tool for encrypting and decrypting files using Fernet symmetric encryption. Files keep their original format and can be decrypted anytime with the correct key.",
+    "website_url": null,
+    "github_url": "https://github.com/oluwakayodemike/EnDe-Crypt",
+    "status": "active",
+    "tags": ["Python", "Cryptography"]
+  }
+]
