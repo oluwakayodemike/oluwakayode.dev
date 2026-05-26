@@ -28,12 +28,24 @@
 
 html {
   font-family: theme("fontFamily.sans");
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.6;
   background-color: var(--bg);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+html.theme-transition,
+html.theme-transition * {
+  transition-property: background-color, border-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text-primary);
 }
 
 ::selection {
