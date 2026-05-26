@@ -1,0 +1,77 @@
+---
+import writingsData from "../data/writings.json";
+
+const writings = writingsData.slice(0, 5);
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+}
+---
+
+<section class="py-10">
+  <span
+    class="mb-3 flex items-center gap-2 text-[0.8rem] tracking-wide text-muted"
+  >
+    <span
+      class="h-[7px] w-[7px] shrink-0 rounded-full bg-secondary-400 dark:bg-secondary-500"
+      aria-hidden="true"></span>
+    Writings
+  </span>
+
+  <ul role="list" class="divide-y divide-line">
+    {
+      writings.map((post) => (
+        <li class="flex items-baseline gap-4 py-3.5">
+          <time
+            datetime={post.date}
+            class="shrink-0 text-[0.88rem] tabular-nums text-muted"
+          >
+            {formatDate(post.date)}
+          </time>
+          <a
+            href={post.url}
+            target={post.external ? "_blank" : "_self"}
+            rel={post.external ? "noopener noreferrer" : undefined}
+            class="group flex items-baseline gap-4 py-3.5 no-underline transition-colors hover:text-ink"
+          >
+            <span class="text-[0.95rem] leading-snug text-ink/80 transition-colors group-hover:text-ink">
+              {post.title}
+              {post.external && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="ml-1 inline-block opacity-40"
+                  aria-label="external link"
+                >
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+              )}
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="mt-3 flex justify-end">
+    <a
+      href="/writings"
+      class="text-[0.8rem] text-muted underline underline-offset-4 transition-colors hover:text-ink"
+    >
+      View all writings →
+    </a>
+  </div>
+</section>
