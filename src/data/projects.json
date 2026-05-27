@@ -1,5 +1,13 @@
 [
   {
+    "name": "BIAD Store",
+    "description": "Full e-commerce platform for a Lagos-based streetwear brand. Built everything from the storefront UI to Paystack payment integration, order management, and production deployment.",
+    "website_url": "https://biad.store",
+    "github_url": null,
+    "status": "active",
+    "tags": ["Next.js", "Sanity", "Paystack", "Resend"]
+  },
+  {
     "name": "ReuniteAI",
     "description": "AI-powered lost & found platform for university campuses featuring Intelligent agents using CLIP image embeddings and Kimi AI reasoning to reconnect students with their belongings.",
     "website_url": "https://reuniteai.tech",

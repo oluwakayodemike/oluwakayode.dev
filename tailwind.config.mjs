@@ -10,7 +10,7 @@ export default {
         md:    '80%',
         lg:    '600px',
         xl:    '600px',
-        '2xl': '720px',
+        '2xl': '820px',
       },
     },
     extend: {

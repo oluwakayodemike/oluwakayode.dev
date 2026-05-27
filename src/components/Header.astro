@@ -14,7 +14,7 @@ const currentPath = Astro.url.pathname;
   class="w-full sticky top-0 z-50 border-b border-line backdrop-blur-sm"
   style="background-color: color-mix(in srgb, var(--bg) 92%, transparent);"
 >
-  <nav class="container flex h-[52px] items-center">
+  <nav class="container flex h-[54px] items-center justify-between">
     <!-- Wordmark -->
     <a
       href="/"
@@ -24,23 +24,14 @@ const currentPath = Astro.url.pathname;
       mko
     </a>
 
-    <!-- Desktop nav links (hidden on mobile) -->
-    <ul role="list" class="hidden sm:flex flex-1 items-center list-none ml-8">
+    <ul role="list" class="hidden sm:flex items-center list-none gap-6">
       {
-        navLinks.map((link, i) => (
-          <li class="flex items-center">
-            {i > 0 && (
-              <span
-                aria-hidden="true"
-                class="select-none px-[0.45rem] text-xs text-line"
-              >
-                |
-              </span>
-            )}
+        navLinks.map((link) => (
+          <li>
             <a
               href={link.href}
               class:list={[
-                "text-[0.8rem] no-underline py-0.5 tracking-wide transition-colors duration-100",
+                "text-sm no-underline tracking-wide transition-colors duration-100",
                 currentPath === link.href ||
                 (link.href !== "/" && currentPath.startsWith(link.href))
                   ? "text-ink font-medium"
@@ -54,9 +45,7 @@ const currentPath = Astro.url.pathname;
       }
     </ul>
 
-    <!-- Right side: theme toggle + hamburger -->
-    <div class="ml-auto flex items-center gap-2">
-      <!-- Theme toggle -->
+    <div class="flex items-center gap-1">
       <button
         id="theme-toggle"
         aria-label="Toggle dark mode"
@@ -112,7 +101,6 @@ const currentPath = Astro.url.pathname;
         </svg>
       </button>
 
-      <!-- Hamburger (mobile only) -->
       <button
         id="menu-toggle"
         aria-label="Toggle menu"
@@ -155,20 +143,19 @@ const currentPath = Astro.url.pathname;
     </div>
   </nav>
 
-  <!-- Mobile menu (hidden by default) -->
   <div
     id="mobile-menu"
     class="hidden sm:hidden border-t border-line"
     style="background-color: color-mix(in srgb, var(--bg) 97%, transparent);"
   >
-    <ul role="list" class="container flex flex-col py-4 list-none gap-0">
+    <ul role="list" class="container flex flex-col py-4 list-none">
       {
         navLinks.map((link) => (
           <li>
             <a
               href={link.href}
               class:list={[
-                "block py-3 text-[0.95rem] tracking-wide no-underline border-b border-line transition-colors last:border-0",
+                "block py-3 text-[0.95rem] tracking-wide no-underline border-b border-line transition-colors",
                 currentPath === link.href ||
                 (link.href !== "/" && currentPath.startsWith(link.href))
                   ? "text-ink font-medium"
@@ -207,14 +194,12 @@ const currentPath = Astro.url.pathname;
 
   menuToggle?.addEventListener("click", () => {
     const isOpen = !mobileMenu?.classList.contains("hidden");
-
     mobileMenu?.classList.toggle("hidden", isOpen);
     iconMenu?.classList.toggle("hidden", !isOpen);
     iconClose?.classList.toggle("hidden", isOpen);
     menuToggle.setAttribute("aria-expanded", String(!isOpen));
   });
 
-  // Close menu on nav link click
   mobileMenu?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       mobileMenu.classList.add("hidden");
