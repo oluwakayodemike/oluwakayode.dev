@@ -1,8 +1,16 @@
-<section class="pt-10 pb-12">
+---
+import arrowRightIcon from "../icons/arrow-right.svg?raw";
+import githubIcon from "../icons/github.svg?raw";
+import xIcon from "../icons/x.svg?raw";
+import linkedinIcon from "../icons/linkedin.svg?raw";
+import emailIcon from "../icons/email.svg?raw";
+---
+
+<section class="md:pt-10 pb-12">
   <div
-    class="grid gap-16 items-center grid-cols-[1fr_280px] max-[540px]:grid-cols-1"
+    class="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-6 md:gap-16 items-center"
   >
-    <div class="min-w-0">
+    <div class="min-w-0 order-last md:order-first">
       <div class="mb-5">
         <span
           class="badge inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-widest"
@@ -34,7 +42,8 @@
       <p class="mb-8 text-sm leading-[1.8] text-muted">
         2+ years building on the web, with a strong pull toward backend systems
         and the kind of problems that take a while to figure out. When I'm not
-        coding, I'm playing chess or mental math games *for fun.
+        coding, I'm learning about finance, playing chess, or doing mental math
+        — actually for fun.
       </p>
 
       <div class="flex flex-wrap items-center gap-4">
@@ -43,19 +52,10 @@
           class="inline-flex items-center gap-2 rounded-lg bg-ink px-5 py-2.5 text-sm font-medium text-surface no-underline transition-all hover:opacity-85"
         >
           See my work
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-            ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
-          >
+          <span
+            class="flex items-center justify-center"
+            set:html={arrowRightIcon}
+          />
         </a>
 
         <span class="hidden h-5 w-px bg-line sm:block" aria-hidden="true"
@@ -63,95 +63,62 @@
 
         <div class="flex items-center gap-3">
           <a
-            href="https://github.com/YOUR_USERNAME"
+            href="https://github.com/oluwakayodemike"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
             class="text-muted transition-colors hover:text-ink"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-              ><path
-                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
-              ></path></svg
-            >
+            <span
+              class="flex items-center justify-center"
+              set:html={githubIcon}
+            />
           </a>
+
           <a
-            href="https://x.com/YOUR_HANDLE"
+            href="https://x.com/trulymko"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="X / Twitter"
             class="text-muted transition-colors hover:text-ink"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="17"
-              height="17"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-              ><path
-                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-              ></path></svg
-            >
+            <span class="flex items-center justify-center" set:html={xIcon} />
           </a>
+
           <a
-            href="https://linkedin.com/in/YOUR_USERNAME"
+            href="https://linkedin.com/in/oluwakayodemike"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
             class="text-muted transition-colors hover:text-ink"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="17"
-              height="17"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-              ><path
-                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-              ></path></svg
-            >
+            <span
+              class="flex items-center justify-center"
+              set:html={linkedinIcon}
+            />
           </a>
+
           <a
             href="mailto:michaelaykay@gmail.com"
             aria-label="Email"
             class="text-muted transition-colors hover:text-ink"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-              ><rect width="20" height="16" x="2" y="4" rx="2"></rect><path
-                d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
-            >
+            <span
+              class="flex items-center justify-center"
+              set:html={emailIcon}
+            />
           </a>
         </div>
       </div>
     </div>
 
     <div
-      class="w-[280px] h-[280px] rounded-2xl overflow-hidden border border-line shrink-0 max-[540px]:order-first max-[540px]:w-full max-[540px]:h-[260px]"
+      class="order-first md:order-last w-full aspect-square rounded-2xl overflow-hidden border border-line shrink-0"
     >
       <img
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8I_m_kf6iq8JeoiETm7vX9yKD6DfBIdXEJA&s"
         alt="Oluwakayode"
         class="w-full h-full object-cover object-top block"
-        width="220"
-        height="320"
       />
     </div>
   </div>

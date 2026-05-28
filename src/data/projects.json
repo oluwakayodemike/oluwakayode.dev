@@ -1,7 +1,7 @@
 [
   {
     "name": "BIAD Store",
-    "description": "Full e-commerce platform for a Lagos-based streetwear brand. Built everything from the storefront UI to Paystack payment integration, order management, and production deployment.",
+    "description": "Developed the official online store for a Lagos-based streetwear brand. Built from the ground up to handle everything from product browsing to secure Paystack checkouts and order fulfillment.",
     "website_url": "https://biad.store",
     "github_url": null,
     "status": "active",

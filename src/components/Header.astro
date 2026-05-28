@@ -1,4 +1,9 @@
 ---
+import moonIcon from "../icons/moon.svg?raw";
+import sunIcon from "../icons/sun.svg?raw";
+import menuIcon from "../icons/menu.svg?raw";
+import closeIcon from "../icons/close.svg?raw";
+
 const navLinks = [
   { label: "home", href: "/" },
   { label: "about", href: "/about" },
@@ -15,7 +20,6 @@ const currentPath = Astro.url.pathname;
   style="background-color: color-mix(in srgb, var(--bg) 92%, transparent);"
 >
   <nav class="container flex h-[54px] items-center justify-between">
-    <!-- Wordmark -->
     <a
       href="/"
       aria-label="mko — home"
@@ -51,54 +55,14 @@ const currentPath = Astro.url.pathname;
         aria-label="Toggle dark mode"
         class="flex shrink-0 cursor-pointer items-center justify-center rounded-md border-none bg-transparent p-1.5 text-muted transition-all hover:text-ink hover:bg-secondary-100 dark:hover:bg-secondary-900"
       >
-        <svg
-          class="icon-moon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-        <svg
-          class="icon-sun"
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <circle cx="12" cy="12" r="5"></circle>
-          <line x1="12" y1="1" x2="12" y2="3"></line><line
-            x1="12"
-            y1="21"
-            x2="12"
-            y2="23"></line>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line
-            x1="18.36"
-            y1="18.36"
-            x2="19.78"
-            y2="19.78"></line>
-          <line x1="1" y1="12" x2="3" y2="12"></line><line
-            x1="21"
-            y1="12"
-            x2="23"
-            y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line
-            x1="18.36"
-            y1="5.64"
-            x2="19.78"
-            y2="4.22"></line>
-        </svg>
+        <span
+          class="icon-moon flex items-center justify-center"
+          set:html={moonIcon}
+        />
+        <span
+          class="icon-sun flex items-center justify-center"
+          set:html={sunIcon}
+        />
       </button>
 
       <button
@@ -107,38 +71,16 @@ const currentPath = Astro.url.pathname;
         aria-expanded="false"
         class="sm:hidden flex items-center justify-center p-1.5 rounded-md text-muted hover:text-ink border-none bg-transparent cursor-pointer transition-colors"
       >
-        <svg
+        <span
           id="icon-menu"
-          xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-        <svg
+          class="flex items-center justify-center"
+          set:html={menuIcon}
+        />
+        <span
           id="icon-close"
-          class="hidden"
-          xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
+          class="hidden items-center justify-center"
+          set:html={closeIcon}
+        />
       </button>
     </div>
   </nav>
@@ -176,10 +118,10 @@ const currentPath = Astro.url.pathname;
     display: none;
   }
   .icon-moon {
-    display: block;
+    display: flex;
   }
   :global(.dark) .icon-sun {
-    display: block;
+    display: flex;
   }
   :global(.dark) .icon-moon {
     display: none;
@@ -195,8 +137,10 @@ const currentPath = Astro.url.pathname;
   menuToggle?.addEventListener("click", () => {
     const isOpen = !mobileMenu?.classList.contains("hidden");
     mobileMenu?.classList.toggle("hidden", isOpen);
-    iconMenu?.classList.toggle("hidden", !isOpen);
-    iconClose?.classList.toggle("hidden", isOpen);
+
+    iconMenu?.classList.toggle("hidden", isOpen);
+    iconClose?.classList.toggle("hidden", !isOpen);
+
     menuToggle.setAttribute("aria-expanded", String(!isOpen));
   });
 
