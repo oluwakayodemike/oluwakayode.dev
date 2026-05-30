@@ -135,13 +135,13 @@ const currentPath = Astro.url.pathname;
   const iconClose = document.getElementById("icon-close");
 
   menuToggle?.addEventListener("click", () => {
-    const isOpen = !mobileMenu?.classList.contains("hidden");
-    mobileMenu?.classList.toggle("hidden", isOpen);
+    const willOpen = mobileMenu?.classList.contains("hidden");
 
-    iconMenu?.classList.toggle("hidden", isOpen);
-    iconClose?.classList.toggle("hidden", !isOpen);
+    mobileMenu?.classList.toggle("hidden", !willOpen);
+    iconMenu?.classList.toggle("hidden", willOpen);
+    iconClose?.classList.toggle("hidden", !willOpen);
 
-    menuToggle.setAttribute("aria-expanded", String(!isOpen));
+    menuToggle.setAttribute("aria-expanded", String(willOpen));
   });
 
   mobileMenu?.querySelectorAll("a").forEach((link) => {
