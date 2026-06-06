@@ -39,7 +39,7 @@ const currentPath = Astro.url.pathname;
                 currentPath === link.href ||
                 (link.href !== "/" && currentPath.startsWith(link.href))
                   ? "text-ink font-medium"
-                  : "text-muted hover:text-ink",
+                  : "text-muted hover:text-primary-400",
               ]}
             >
               {link.label}
@@ -53,7 +53,7 @@ const currentPath = Astro.url.pathname;
       <button
         id="theme-toggle"
         aria-label="Toggle dark mode"
-        class="flex shrink-0 cursor-pointer items-center justify-center rounded-md border-none bg-transparent p-1.5 text-muted transition-all hover:text-ink focus:outline-none focus-visible:outline-none"
+        class="flex shrink-0 cursor-pointer items-center justify-center rounded-md border-none bg-transparent p-1.5 text-muted transition-all hover:text-primary-400 focus:outline-none focus-visible:outline-none"
       >
         <span
           class="icon-moon flex items-center justify-center"
@@ -69,7 +69,7 @@ const currentPath = Astro.url.pathname;
         id="menu-toggle"
         aria-label="Toggle menu"
         aria-expanded="false"
-        class="sm:hidden flex items-center justify-center p-1.5 rounded-md text-muted hover:text-ink border-none bg-transparent cursor-pointer transition-colors"
+        class="sm:hidden flex items-center justify-center p-1.5 rounded-md text-muted hover:text-primary-400 border-none bg-transparent cursor-pointer transition-colors"
       >
         <span
           id="icon-menu"
@@ -101,7 +101,7 @@ const currentPath = Astro.url.pathname;
                 currentPath === link.href ||
                 (link.href !== "/" && currentPath.startsWith(link.href))
                   ? "text-ink font-medium"
-                  : "text-muted hover:text-ink",
+                  : "text-muted hover:text-primary-400",
               ]}
             >
               {link.label}
