@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+import myAvatar from "../../assets/avatar.png";
+---
+
+<div class="mb-8 flex items-center justify-between">
+  <div class="flex items-center gap-5">
+    <div
+      class="h-[72px] w-[72px] shrink-0 overflow-hidden rounded-2xl border border-line"
+    >
+      <Image
+        src={myAvatar}
+        alt="Oluwakayode"
+        class="block h-full w-full object-cover object-center"
+        width="72"
+        height="72"
+      />
+    </div>
+    <div>
+      <h1 class="text-base font-semibold text-ink">
+        Michael Kayode Oluwasegun
+      </h1>
+      <p
+        id="live-line"
+        class="text-sm font-medium text-muted tabular-nums mt-1"
+      >
+      </p>
+      <a
+        href="mailto:michaelaykay@gmail.com"
+        aria-label="Email"
+        class="text-sm text-muted transition-colors hover:text-primary-400"
+      >
+        michaelaykay@gmail.com
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateTime() {
+    const el = document.getElementById("live-line");
+    if (!el) return;
+    const time = new Date().toLocaleTimeString("en-US", {
+      timeZone: "Africa/Lagos",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+    el.textContent = `${time} - Lagos, Nigeria`;
+  }
+  updateTime();
+  setInterval(updateTime, 1000);
+</script>
