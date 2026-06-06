@@ -1,5 +1,7 @@
 ---
-import arrowRightIcon from "../icons/arrow-right.svg?raw";
+import { Image } from "astro:assets";
+import myAvatar from "../assets/avatar.png";
+import pinIcon from "../icons/clip.svg?raw";
 import githubIcon from "../icons/github.svg?raw";
 import xIcon from "../icons/x.svg?raw";
 import linkedinIcon from "../icons/linkedin.svg?raw";
@@ -40,22 +42,21 @@ import emailIcon from "../icons/email.svg?raw";
       </p>
 
       <p class="mb-8 text-sm leading-[1.8] text-muted">
-        2+ years building on the web, with a strong pull toward backend systems
-        and the kind of problems that take a while to figure out. When I'm not
-        coding, I'm learning about finance, playing chess, or doing mental math
-        — actually for fun.
+        2+ years building on the web, with a strong pull toward backend systems.
+        I like building things, figuring out how they break, and putting them
+        back together. When I'm not coding, you can usually find me studying
+        finance or playing chess.
       </p>
 
       <div class="flex flex-wrap items-center gap-4">
         <a
-          href="/projects"
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
           class="inline-flex items-center gap-2 rounded-lg bg-ink px-5 py-2.5 text-sm font-medium text-surface no-underline transition-all hover:opacity-85"
         >
-          See my work
-          <span
-            class="flex items-center justify-center"
-            set:html={arrowRightIcon}
-          />
+          <span class="flex items-center justify-center" set:html={pinIcon} />
+          Resume
         </a>
 
         <span class="hidden h-5 w-px bg-line sm:block" aria-hidden="true"
@@ -115,8 +116,8 @@ import emailIcon from "../icons/email.svg?raw";
     <div
       class="order-first md:order-last w-full aspect-square rounded-2xl overflow-hidden border border-line shrink-0"
     >
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8I_m_kf6iq8JeoiETm7vX9yKD6DfBIdXEJA&s"
+      <Image
+        src={myAvatar}
         alt="Oluwakayode"
         class="w-full h-full object-cover object-top block"
       />
