@@ -14,7 +14,7 @@ const projects = projectsData.filter((p) => p.status === "active").slice(0, 3);
     Projects
   </span>
 
-  <ul role="list" class="divide-y divide-line">
+  <ul role="list" class="">
     {
       projects.map((project) => {
         const projectLink = project.website_url || project.github_url;
