@@ -1,0 +1,55 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+export interface Props {
+  post: CollectionEntry<"writings">;
+}
+
+const {
+  post: { data, id },
+} = Astro.props;
+
+const href = data.external_url ?? `/writings/${id}`;
+const isExternal = !!data.external_url;
+
+const dateObj = new Date(data.date);
+const formattedDate = dateObj.toLocaleDateString("en-GB");
+---
+
+<article class="group flex flex-col mb-10 last:mb-0">
+  <a
+    href={href}
+    target={isExternal ? "_blank" : "_self"}
+    rel={isExternal ? "noopener noreferrer" : undefined}
+    class="inline-block text-xl font-bold text-ink mb-2 no-underline hover:underline decoration-line underline-offset-4 decoration-2"
+  >
+    {data.title}
+  </a>
+
+  {
+    data.description && (
+      <p class="text-base leading-relaxed text-muted mb-4">
+        {data.description}
+      </p>
+    )
+  }
+
+  <div class="flex flex-row items-center justify-between gap-4">
+    <div class="flex flex-wrap gap-2 max-w-[75%]">
+      {
+        data.tags &&
+          data.tags.map((tag: string) => (
+            <span class="bg-primary-200 px-2.5 py-0.5 text-sm font-medium text-primary-800 dark:bg-secondary-800 dark:text-secondary-300 rounded-sm">
+              {tag}
+            </span>
+          ))
+      }
+    </div>
+    <time
+      datetime={data.date.toISOString()}
+      class="shrink-0 text-sm text-muted"
+    >
+      {formattedDate}
+    </time>
+  </div>
+</article>
