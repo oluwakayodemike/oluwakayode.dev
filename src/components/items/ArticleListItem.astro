@@ -28,7 +28,9 @@ const formattedDate = dateObj.toLocaleDateString("en-GB");
 
   {
     data.description && (
-      <p class="text-sm leading-relaxed text-muted mb-4">{data.description}</p>
+      <p class="text-sm leading-relaxed text-muted dark:text-secondary-400 mb-4">
+        {data.description}
+      </p>
     )
   }
 
