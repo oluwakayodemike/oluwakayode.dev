@@ -21,25 +21,23 @@ const formattedDate = dateObj.toLocaleDateString("en-GB");
     href={href}
     target={isExternal ? "_blank" : "_self"}
     rel={isExternal ? "noopener noreferrer" : undefined}
-    class="inline-block text-xl font-bold text-ink mb-2 no-underline hover:underline decoration-line underline-offset-4 decoration-2"
+    class="inline-block text-lg font-bold text-ink mb-2 no-underline hover:underline decoration-line underline-offset-4 decoration-2"
   >
     {data.title}
   </a>
 
   {
     data.description && (
-      <p class="text-base leading-relaxed text-muted mb-4">
-        {data.description}
-      </p>
+      <p class="text-sm leading-relaxed text-muted mb-4">{data.description}</p>
     )
   }
 
   <div class="flex flex-row items-center justify-between gap-4">
-    <div class="flex flex-wrap gap-2 max-w-[75%]">
+    <div class="flex flex-wrap gap-1.5">
       {
         data.tags &&
           data.tags.map((tag: string) => (
-            <span class="bg-primary-200 px-2.5 py-0.5 text-sm font-medium text-primary-800 dark:bg-secondary-800 dark:text-secondary-300 rounded-sm">
+            <span class="bg-primary-200 px-2 py-0.5 text-xs font-medium text-primary-600 dark:bg-secondary-900 dark:text-secondary-300">
               {tag}
             </span>
           ))
