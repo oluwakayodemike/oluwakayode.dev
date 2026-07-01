@@ -23,14 +23,12 @@ import projectsData from "../data/projects.json";
     projectsData && projectsData.length > 0 ? (
       <ul role="list" class="">
         {projectsData.map((project) => (
-          <li class="group py-6 first:pt-0 last:pb-0">
-            <article class="space-y-4">
+          <li class="mt-6 space-y-6">
+            <article>
               <div class="flex items-start justify-between gap-4">
                 <div class="min-w-0 flex-1">
                   <header class="mb-1.5 flex items-baseline gap-2">
-                    <h2 class="text-base font-semibold text-ink">
-                      {project.name}
-                    </h2>
+                    <h2 class="text-lg font-bold text-ink">{project.name}</h2>
                     {project.status && project.status !== "active" && (
                       <span class="rounded-full border border-line bg-muted/5 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-muted">
                         {project.status}
