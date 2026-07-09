@@ -1,0 +1,50 @@
+---
+title: Notes on readable interfaces
+date: 2025-11-04
+description: A fake writing entry about designing interfaces that are quiet, scannable, and kind to tired users.
+keywords: ui, design, readability, product
+tags: ["design", "frontend", "ui"]
+draft: false
+---
+
+# Interfaces should lower the temperature
+
+I like interfaces that make the next action feel obvious without shouting about it. The best screens are not empty, but they are calm. They give the eye a path, then get out of the way.
+
+> A readable interface is not just one with readable text. It is one where the user can understand the situation without negotiating with the layout.
+
+The mistake I make most often is trying to make every part equally expressive. That usually creates a screen where nothing has priority. A page needs contrast, but not every element can be the interesting one.
+
+## Hierarchy is a kindness
+
+When I am working on an interface, I ask three questions:
+
+1. What does the user need to notice first?
+2. What can wait until they ask for it?
+3. What should disappear entirely?
+
+These questions are not glamorous, but they save a lot of design wandering.
+
+## Buttons should feel like decisions
+
+A button is a promise that something will happen. That means the label should carry the result, not the internal implementation.
+
+```html
+<button type="button">Publish writing</button>
+<button type="button">Save draft</button>
+```
+
+Both are better than a vague label like `Submit`, because they tell the user what world they are about to enter.
+
+## Quiet details still matter
+
+Readable interfaces often rely on small choices:
+
+- Enough line height for longer paragraphs.
+- Clear hover and focus states.
+- Dates that do not shift because of timezones.
+- Empty states that explain what is missing.
+
+### The real test
+
+The real test is not whether the design looks good in a screenshot. It is whether someone can return to it tired, distracted, or in a hurry and still feel oriented.

@@ -1,0 +1,51 @@
+---
+title: Building a small toolbox
+date: 2026-06-18
+description: A fake note about turning repeatable little scripts into a calmer personal toolbox.
+keywords: tools, productivity, scripts, workflow
+tags: ["tools", "workflow", "notes"]
+draft: false
+---
+
+# Why tiny tools matter
+
+> **EDIT (18 Jun, 2026)**: This is a fake writing entry for testing the article page. The point is to exercise headings, quotes, lists, inline code, and code blocks in one place.
+
+Most of the tools I actually use every day are not impressive. They are tiny, boring, and usually held together by a name I can remember at 1 a.m. That is exactly why I like them. A small tool should feel like a drawer: easy to open, easy to close, and not dramatic about either.
+
+I used to wait until a workflow became painful before I automated it. Now I try to notice the earlier signal: a small sigh before doing the same thing for the fifth time. That sigh is usually the product spec.
+
+## The first version should be plain
+
+The temptation is to make the tool too clever too early. I try to start with a script that accepts a few arguments and prints something useful.
+
+```ts
+type Note = {
+  title: string;
+  body: string;
+  tags: string[];
+};
+
+function summarize(note: Note) {
+  return `${note.title} (${note.tags.join(", ")})`;
+}
+```
+
+The boring version teaches me what the tool wants to become. If I still use it after a week, then it earns a nicer interface.
+
+## What I usually keep
+
+- A command for starting common project tasks.
+- A script for cleaning up old drafts.
+- A shortcut for opening the files I always forget.
+- A tiny checklist for release steps.
+
+## What I usually delete
+
+I delete anything that needs too much explanation. Personal tools are allowed to be specific, but they should not require a ceremony. If I cannot remember how to use it, the interface is probably wrong.
+
+### A small rule
+
+If the tool saves less time than it costs to maintain, it should either become simpler or disappear.
+
+That sounds obvious, but obvious rules are useful because they catch me when I am being fancy for no reason.
