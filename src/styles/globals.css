@@ -69,6 +69,7 @@ body {
 .writing-content h4 {
   margin-top: theme("spacing.9");
   margin-bottom: theme("spacing.3");
+  scroll-margin-top: 3.75rem;
   color: var(--text-primary);
   font-weight: 700;
   line-height: 1.2;
@@ -92,8 +93,9 @@ body {
 
 .writing-content p {
   padding-block: theme("spacing.2");
-  color: color-mix(in srgb, var(--text-primary) 86%, transparent);
-  line-height: 1.9;
+  color: color-mix(in srgb, var(--text-primary) 80%, transparent);
+  font-size: 0.95rem;
+  line-height: 1.85;
 }
 
 .writing-content a {
@@ -114,8 +116,9 @@ body {
 
 .writing-content li {
   margin-block: theme("spacing.1");
-  color: color-mix(in srgb, var(--text-primary) 86%, transparent);
-  line-height: 1.8;
+  color: color-mix(in srgb, var(--text-primary) 80%, transparent);
+  font-size: 0.95rem;
+  line-height: 1.85;
 }
 
 .writing-content blockquote {
@@ -126,7 +129,7 @@ body {
   color: var(--text-primary);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
-  font-size: theme("fontSize.sm");
+  font-size: 0.875rem;
   font-style: italic;
   line-height: 1.8;
 
@@ -139,6 +142,8 @@ body {
 .writing-content blockquote p {
   padding-block: 0;
   color: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .writing-content code {

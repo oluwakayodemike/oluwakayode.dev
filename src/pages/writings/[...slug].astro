@@ -71,6 +71,12 @@ const formattedDate = date.toLocaleDateString("en-US", {
         </div>
       </header>
 
+      {headings.length > 0 && (
+        <div class="mb-8 lg:hidden">
+          <TableOfContents headings={headings} variant="mobile" />
+        </div>
+      )}
+
       <div class="writing-content">
         <Content />
       </div>
@@ -78,7 +84,7 @@ const formattedDate = date.toLocaleDateString("en-US", {
 
     {headings.length > 0 && (
       <aside class="hidden self-start lg:sticky lg:top-[78px] lg:block">
-        <TableOfContents {headings} />
+        <TableOfContents headings={headings} />
       </aside>
     )}
   </div>

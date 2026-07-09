@@ -3,25 +3,90 @@ import type { MarkdownHeading } from "astro";
 
 interface Props {
   headings: MarkdownHeading[];
+  variant?: "desktop" | "mobile";
 }
 
-const { headings } = Astro.props;
+const { headings, variant = "desktop" } = Astro.props;
 const visibleHeadings = headings.filter((heading) => heading.depth <= 4);
 ---
 
+<style>
+  details[open] .toc-chevron {
+    transform: rotate(45deg);
+  }
+
+  [data-toc-item].is-active {
+    border-left-color: theme("colors.primary.500");
+    background-color: theme("colors.primary.100");
+  }
+
+  [data-toc-item].is-active > a {
+    color: theme("colors.primary.600");
+    font-weight: 600;
+  }
+
+  :global(.dark) [data-toc-item].is-active {
+    border-left-color: theme("colors.primary.400");
+    background-color: theme("colors.secondary.900");
+  }
+
+  :global(.dark) [data-toc-item].is-active > a {
+    color: theme("colors.primary.300");
+  }
+</style>
+
 {
-  visibleHeadings.length > 0 && (
+  visibleHeadings.length > 0 && variant === "mobile" && (
+    <details class="border border-line bg-surface" open>
+      <summary class="flex cursor-pointer list-none items-center justify-between bg-ink px-3 py-2 text-sm font-bold text-surface [&::-webkit-details-marker]:hidden">
+        Table of contents
+        <span
+          aria-hidden="true"
+          class="toc-chevron h-2 w-2 -rotate-135 border-l border-t border-current transition-transform"
+        />
+      </summary>
+
+      <nav aria-label="Table of contents">
+        <ol class="py-2">
+          {visibleHeadings.map((heading) => (
+            <li
+              data-toc-item
+              data-heading-id={heading.slug}
+              class:list={[
+                "border-l border-transparent px-3 py-1 text-xs leading-snug",
+                heading.depth > 1 && "border-line text-muted",
+              ]}
+              style={`margin-left: ${(heading.depth - 1) * 0.7}rem`}
+            >
+              <a
+                href={`#${heading.slug}`}
+                class="block text-muted no-underline transition-colors hover:text-primary-500"
+              >
+                {heading.text}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    </details>
+  )
+}
+
+{
+  visibleHeadings.length > 0 && variant === "desktop" && (
     <nav
       aria-label="Table of contents"
       class="max-h-[calc(100vh-96px)] overflow-y-auto border border-line bg-surface"
     >
-      <h2 class="border-b border-line px-4 py-3 text-lg font-bold text-ink">
+      <h2 class="border-b border-line px-4 py-2 text-lg font-bold text-ink">
         Table of contents
       </h2>
 
       <ol class="py-3">
         {visibleHeadings.map((heading) => (
           <li
+            data-toc-item
+            data-heading-id={heading.slug}
             class:list={[
               "border-l border-transparent px-4 py-1.5 text-sm leading-snug",
               heading.depth > 1 && "border-line text-muted",
@@ -40,3 +105,45 @@ const visibleHeadings = headings.filter((heading) => heading.depth <= 4);
     </nav>
   )
 }
+
+<script>
+  const tocItems = Array.from(
+    document.querySelectorAll<HTMLElement>("[data-toc-item]"),
+  );
+  const tocHeadingIds = Array.from(
+    new Set(
+      tocItems
+        .map((item) => item.dataset.headingId)
+        .filter((id): id is string => Boolean(id)),
+    ),
+  );
+  const articleHeadings = tocHeadingIds
+    .map((id) => document.getElementById(id))
+    .filter((heading): heading is HTMLElement => Boolean(heading));
+
+  function setActiveTocItem(activeId: string) {
+    tocItems.forEach((item) => {
+      item.classList.toggle("is-active", item.dataset.headingId === activeId);
+    });
+  }
+
+  function updateActiveTocItem() {
+    let activeHeading = articleHeadings[0];
+
+    for (const heading of articleHeadings) {
+      if (heading.getBoundingClientRect().top <= 110) {
+        activeHeading = heading;
+      } else {
+        break;
+      }
+    }
+
+    if (activeHeading?.id) {
+      setActiveTocItem(activeHeading.id);
+    }
+  }
+
+  updateActiveTocItem();
+  window.addEventListener("scroll", updateActiveTocItem, { passive: true });
+  window.addEventListener("resize", updateActiveTocItem);
+</script>
