@@ -1,11 +1,25 @@
 ---
-import writingsData from "../data/writings.json";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import externalLinkIcon from "../icons/external-link.svg?raw";
 
-const writings = writingsData.slice(0, 5);
+type Writing = CollectionEntry<"writings">;
+const allWritings = await getCollection(
+  "writings",
+  ({ data }: { data: CollectionEntry<"writings">["data"] }) =>
+    import.meta.env.PROD ? data.draft !== true : true,
+);
 
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString("en-GB", {
+const writings: Writing[] = allWritings
+  .sort(
+    (a: Writing, b: Writing) =>
+      b.data.date.valueOf() - a.data.date.valueOf(),
+  )
+  .slice(0, 5);
+
+function formatDate(date: string | Date) {
+  const d = date instanceof Date ? date : new Date(date);
+  return d.toLocaleDateString("en-GB", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
@@ -23,31 +37,35 @@ function formatDate(dateStr: string) {
 
   <ul role="list" class="">
     {
-      writings.map((post) => (
-        <li class="flex items-baseline gap-5 py-4">
-          <time
-            datetime={post.date}
-            class="shrink-0 text-sm tabular-nums text-muted"
-          >
-            {formatDate(post.date)}
-          </time>
-          <a
-            href={post.url}
-            target={post.external ? "_blank" : "_self"}
-            rel={post.external ? "noopener noreferrer" : undefined}
-            class="text-sm leading-snug text-ink/80 underline underline-offset-4 transition-colors hover:text-primary-400 flex items-center flex-wrap gap-1"
-          >
-            {post.title}
-            {post.external && (
-              <span
-                class="inline-flex opacity-40"
-                aria-label="external link"
-                set:html={externalLinkIcon}
-              />
-            )}
-          </a>
-        </li>
-      ))
+      writings.map((post: Writing) => {
+        const href = post.data.external_url ?? `/writings/${post.id}`;
+        const isExternal = !!post.data.external_url;
+        return (
+          <li class="flex items-baseline gap-5 py-4">
+            <time
+              datetime={post.data.date.toISOString()}
+              class="shrink-0 text-sm tabular-nums text-muted"
+            >
+              {formatDate(post.data.date)}
+            </time>
+            <a
+              href={href}
+              target={isExternal ? "_blank" : "_self"}
+              rel={isExternal ? "noopener noreferrer" : ""}
+              class="text-sm leading-snug text-ink/80 underline underline-offset-4 transition-colors hover:text-primary-400 flex items-center flex-wrap gap-1"
+            >
+              {post.data.title}
+              {isExternal && (
+                <span
+                  class="inline-flex opacity-40"
+                  aria-label="external link"
+                  set:html={externalLinkIcon}
+                />
+              )}
+            </a>
+          </li>
+        );
+      })
     }
   </ul>
 
