@@ -1,0 +1,42 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+const visibleHeadings = headings.filter((heading) => heading.depth <= 4);
+---
+
+{
+  visibleHeadings.length > 0 && (
+    <nav
+      aria-label="Table of contents"
+      class="max-h-[calc(100vh-96px)] overflow-y-auto border border-line bg-surface"
+    >
+      <h2 class="border-b border-line px-4 py-3 text-lg font-bold text-ink">
+        Table of contents
+      </h2>
+
+      <ol class="py-3">
+        {visibleHeadings.map((heading) => (
+          <li
+            class:list={[
+              "border-l border-transparent px-4 py-1.5 text-sm leading-snug",
+              heading.depth > 1 && "border-line text-muted",
+            ]}
+            style={`margin-left: ${(heading.depth - 1) * 0.85}rem`}
+          >
+            <a
+              href={`#${heading.slug}`}
+              class="block text-muted no-underline transition-colors hover:text-primary-500"
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}

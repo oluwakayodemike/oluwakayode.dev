@@ -6,9 +6,14 @@ import "../styles/globals.css";
 interface Props {
   title?: string;
   description?: string;
+  mainClass?: string;
 }
 
-const { title = "mko", description = "Software engineer." } = Astro.props;
+const {
+  title = "mko",
+  description = "Software engineer.",
+  mainClass = "container py-6",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -38,7 +43,7 @@ const { title = "mko", description = "Software engineer." } = Astro.props;
 
   <body>
     <Header />
-    <main class="container py-6">
+    <main class={mainClass}>
       <slot />
     </main>
     <Footer />
