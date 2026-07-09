@@ -1,0 +1,13 @@
+---
+interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<h1 id={id} data-section-header class="mdx-heading mdx-heading-1">
+  <a href={id ? `#${id}` : undefined} class="mdx-heading-link">
+    <slot />
+  </a>
+</h1>

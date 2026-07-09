@@ -1,0 +1,11 @@
+---
+const html = await Astro.slots.render("default");
+const language = html.match(/class="language-([^"]+)"/)?.[1] ?? "text";
+---
+
+<figure class="code-figure">
+  <figcaption class="code-label">{language}</figcaption>
+  <div class="code-block">
+    <Fragment set:html={html} />
+  </div>
+</figure>

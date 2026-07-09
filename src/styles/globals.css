@@ -91,11 +91,23 @@ body {
   font-size: theme("fontSize.lg");
 }
 
+.writing-content .mdx-heading {
+  position: relative;
+}
+
+.writing-content .mdx-heading .mdx-heading-link {
+  display: inline-block;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .writing-content p {
   padding-block: theme("spacing.2");
   color: color-mix(in srgb, var(--text-primary) 80%, transparent);
   font-size: 0.95rem;
-  line-height: 1.85;
+  line-height: 1.72;
 }
 
 .writing-content a {
@@ -118,7 +130,7 @@ body {
   margin-block: theme("spacing.1");
   color: color-mix(in srgb, var(--text-primary) 80%, transparent);
   font-size: 0.95rem;
-  line-height: 1.85;
+  line-height: 1.72;
 }
 
 .writing-content blockquote {
@@ -131,7 +143,7 @@ body {
     "Liberation Mono", "Courier New", monospace;
   font-size: 0.875rem;
   font-style: italic;
-  line-height: 1.8;
+  line-height: 1.68;
 
   .dark & {
     border-left-color: theme("colors.secondary.200");
@@ -161,7 +173,28 @@ body {
   }
 }
 
-.writing-content pre {
+.writing-content .code-figure {
+  margin-block: theme("spacing.5");
+}
+
+.writing-content .code-label {
+  width: max-content;
+  border-radius: theme("borderRadius.sm") theme("borderRadius.sm") 0 0;
+  background-color: theme("colors.secondary.200");
+  padding: theme("spacing.1") theme("spacing.3");
+  color: var(--text-primary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: theme("fontSize.xs");
+  line-height: 1.3;
+
+  .dark & {
+    background-color: theme("colors.secondary.800");
+  }
+}
+
+.writing-content pre,
+.writing-content .code-block {
   margin-block: theme("spacing.5");
   overflow-x: auto;
   border: 1px solid theme("colors.secondary.200");
@@ -169,12 +202,17 @@ body {
   background-color: theme("colors.primary.100");
   padding: theme("spacing.4");
   font-size: theme("fontSize.sm");
-  line-height: 1.7;
+  line-height: 1.55;
 
   .dark & {
     border-color: theme("colors.secondary.800");
     background-color: theme("colors.secondary.900");
   }
+}
+
+.writing-content .code-block {
+  margin-block: 0;
+  border-top-left-radius: 0;
 }
 
 .writing-content pre code {
