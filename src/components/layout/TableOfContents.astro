@@ -42,7 +42,7 @@ const visibleHeadings = headings.filter((heading) => heading.depth <= 4);
 {
   visibleHeadings.length > 0 && variant === "mobile" && (
     <details class="border border-line bg-surface" open>
-      <summary class="flex cursor-pointer list-none items-center justify-between bg-ink px-3 py-2 text-sm font-bold text-surface [&::-webkit-details-marker]:hidden">
+      <summary class="flex cursor-pointer list-none items-center justify-between bg-ink px-3 py-2 text-[0.95rem] font-bold text-surface [&::-webkit-details-marker]:hidden">
         Table of contents
         <span
           aria-hidden="true"
@@ -57,7 +57,7 @@ const visibleHeadings = headings.filter((heading) => heading.depth <= 4);
               data-toc-item
               data-heading-id={heading.slug}
               class:list={[
-                "border-l border-transparent px-3 py-1 text-xs leading-snug",
+                "border-l border-transparent px-3 py-1.5 text-[0.95rem] leading-snug",
                 heading.depth > 1 && "border-line text-muted",
               ]}
               style={`margin-left: ${(heading.depth - 1) * 0.7}rem`}
@@ -92,7 +92,7 @@ const visibleHeadings = headings.filter((heading) => heading.depth <= 4);
             data-toc-item
             data-heading-id={heading.slug}
             class:list={[
-              "border-l border-transparent px-4 py-1.5 text-sm leading-snug",
+              "border-l border-transparent px-4 py-1.5 text-[0.95rem] leading-snug",
               heading.depth > 1 && "border-line text-muted",
             ]}
             style={`margin-left: ${(heading.depth - 1) * 0.85}rem`}
