@@ -10,4 +10,7 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
   ],
+  markdown: {
+    syntaxHighlight: 'prism',
+  },
 });
