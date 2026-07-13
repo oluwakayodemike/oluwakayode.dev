@@ -51,7 +51,7 @@ const formattedDate = date.toLocaleDateString("en-US", {
     <article class="min-w-0">
       <header class="mb-9">
         <h1
-          class="mb-4 text-4xl font-black leading-[1.05] text-ink md:text-6xl"
+          class="mb-4 font-inter text-4xl font-bold leading-[1.05] text-ink md:text-6xl"
         >
           {title}
         </h1>
@@ -77,21 +77,25 @@ const formattedDate = date.toLocaleDateString("en-US", {
         </div>
       </header>
 
-      {headings.length > 0 && (
-        <div class="mb-8 lg:hidden">
-          <TableOfContents headings={headings} variant="mobile" />
-        </div>
-      )}
+      {
+        headings.length > 0 && (
+          <div class="mb-8 lg:hidden">
+            <TableOfContents headings={headings} variant="mobile" />
+          </div>
+        )
+      }
 
       <div class="writing-content">
         <Content components={{ h1: H1, h2: H2, h3: H3, h4: H4, pre: Code }} />
       </div>
     </article>
 
-    {headings.length > 0 && (
-      <aside class="hidden self-start lg:sticky lg:top-[78px] lg:block">
-        <TableOfContents headings={headings} />
-      </aside>
-    )}
+    {
+      headings.length > 0 && (
+        <aside class="hidden self-start lg:sticky lg:top-[78px] lg:block">
+          <TableOfContents headings={headings} />
+        </aside>
+      )
+    }
   </div>
 </Layout>
