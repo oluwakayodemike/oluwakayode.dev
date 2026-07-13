@@ -36,7 +36,7 @@ const visibleHeadings = headings.filter((heading) => heading.depth <= 4);
             >
               <a
                 href={`#${heading.slug}`}
-                class="block font-sans text-muted no-underline transition-colors hover:text-primary-500 data-[active=true]:font-semibold data-[active=true]:text-primary-600 dark:data-[active=true]:text-primary-200"
+                class="block font-sans text-muted no-underline transition-colors hover:text-primary-500 data-[active=true]:text-primary-600 dark:data-[active=true]:text-primary-200"
               >
                 {heading.text}
               </a>
@@ -65,7 +65,7 @@ const visibleHeadings = headings.filter((heading) => heading.depth <= 4);
             data-heading-id={heading.slug}
             data-active="false"
             class:list={[
-              "border-l border-transparent px-4 py-1.5 text-[0.95rem] leading-snug font-sans transition-colors data-[active=true]:border-primary-500 data-[active=true]:bg-primary-100 data-[active=true]:text-primary-600 data-[active=true]:font-semibold dark:data-[active=true]:border-primary-400 dark:data-[active=true]:bg-[color-mix(in_srgb,theme(colors.primary.900)_46%,var(--bg))] dark:data-[active=true]:text-primary-200",
+              "border-l border-transparent px-4 py-1.5 text-[0.95rem] leading-snug font-sans transition-colors data-[active=true]:border-primary-500 data-[active=true]:bg-primary-100 data-[active=true]:text-primary-600 dark:data-[active=true]:border-primary-400 dark:data-[active=true]:bg-[color-mix(in_srgb,theme(colors.primary.900)_46%,var(--bg))] dark:data-[active=true]:text-primary-200",
               heading.depth > 1 && "border-line text-muted",
             ]}
             style={`margin-left: ${(heading.depth - 1) * 0.85}rem`}
