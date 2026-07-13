@@ -166,8 +166,7 @@ body {
   background-color: theme("colors.secondary.200");
   padding: theme("spacing.4") theme("spacing.5");
   color: var(--text-primary);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  font-family: var(--code-font);
   font-size: 0.875rem;
   font-style: italic;
   line-height: 1.68;
