@@ -1,7 +1,105 @@
 ---
-title: "Fixing the MongoDB 'querySrv ECONNREFUSED' Nightmare on localhost"
-description: "A deep dive into why MongoDB's SRV connection string breaks on localhost and how to fix it without losing your mind."
+title: Fixing the MongoDB 'querySrv ECONNREFUSED' Nightmare on localhost
 date: 2026-02-01
-tags: ["mongodb", "debugging", "nodejs"]
+description: How to bypass Node.js DNS issues and manually construct a standard MongoDB connection string to fix the ECONNREFUSED error.
+keywords: mongodb, nodejs, dns, querysrv, econnrefused, mongoose, database
+tags: ["mongodb", "nodejs", "debugging"]
 external_url: "https://medium.com/@michaelaykay/fixing-the-mongodb-querysrv-econnrefused-nightmare-on-localhost-fe17bf7f1092"
+draft: false
 ---
+
+There is a higher chance your code is fine if you are trying to connect to MongoDB Atlas and it keeps hitting you with `querySrv ECONNREFUSED`.
+
+> **UPDATE (February 2, 2026)**: Root Cause Found! Since publishing this, it has been discovered that this error specifically affects Node.js v22+ on Windows, caused by Node not correctly using the system DNS resolver.
+
+If you are on this specific stack, there is a one-line code fix discovered by the community (credit to this [StackOverflow](https://stackoverflow.com/questions/79873598/mongodb-atlas-srv-connection-fails-with-querysrv-econnrefused-after-switching-no) question):
+
+```js
+require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
+```
+
+However, if you are on an older Node version, or prefer not to hardcode DNS servers in your application code, the solution below (manually constructing the Standard URI) remains the most robust way to bypass DNS issues entirely.
+
+## The problem
+
+I encountered this error while trying to spin up my server and connect to my MongoDB database. The error is basically saying 'your server is not failing to connect to the database; it's failing to connect to the DNS system to ask where the database is'.
+
+According to my research, this can be caused by DNS blocking, strict firewalls, or just a slow internet connection. Some blogs suggest whitelisting your IP address on MongoDB Atlas (I even tried whitelisting `0.0.0.0/0` out of desperation--please don't do this)
+
+After surfing the internet for hours, common suggestions includes:
+
+1. Switch to a Public DNS: change your DNS to Google `(8.8.8.8)` or Cloudflare `(1.1.1.1)`.
+2. Flush your DNS: you can run this to clear your local DNS resolver cache.
+
+   ```bash
+   ipconfig /flushdns #run cmd as administrator before running
+   ```
+
+3. Test to check if it has been resolved.
+
+   ```bash
+   ping _mongodb._tcp.test.egxt9uu.mongodb.net
+   ```
+
+If after this, it now resolves back to an IP Address -- CONGRATS!
+
+> Other things you can try is probably reseting your router as it might also be an Internet Service Provider(ISP) Issue or Double checking your connection string.
+
+## Switching to the Standard URI
+
+The most reliable fix I found is switching back to the Standard Connection String. This is the one starting with `mongodb://` instead of `mongodb+srv://`.
+
+The problem is, the `+srv` connection string is recommended because it automatically handles failover and service discovery. Finding the Standard URI requires a bit of technicality, as it appears to be completely hidden on the Atlas connection interface.
+
+### How to get the Standard URI
+
+To construct the standard string, we need to find the actual server addresses hidden behind that short `+srv` URL. We can do this using the terminal.
+
+When your server crashes, you are probably getting an error like this:
+
+```bash
+Error: querySrv ECONNREFUSED _mongodb._tcp.test.egxt9uu.mongodb.net
+```
+
+That hostname in the error message is exactly what we need. We are going to perform an `nslookup` with the `-SRV` flag to ask the DNS server, "Where is the database actually located?"
+
+Replace the hostname below with the one from your specific error message:
+
+```bash
+nslookup -type=SRV _mongodb._tcp.test.egxt9uu.mongodb.net
+#(Replace the hostname with the one from your specific error message)
+```
+
+From the result we've literally gotten everything we need for our construction, everything the +srv string was hiding. This basically shows that there are 3 hidden servers and now we've gotten their real names `(shard-00, 01, and 02)`, and their port `(27017)`.
+
+```bash
+svr hostname = ac-mvh7i5b-shard-00-00.egxt9uu.mongodb.net
+svr hostname = ac-mvh7i5b-shard-00-01.egxt9uu.mongodb.net
+svr hostname = ac-mvh7i5b-shard-00-02.egxt9uu.mongodb.net
+```
+
+## The construction
+
+With those details, we can piece the connection string together manually.
+
+- **Protocol:** Change `mongodb+srv://` to `mongodb://`
+- **Auth:** Add your credentials (`username:password@`)
+- **Host:** List every server hostname we got from the `nslookup`, separated by commas, and add the port (`:27017`) to each one.
+- **Database:** Add the database name with a forward slash (e.g. `/test`).
+- **Options:** Append the standard options at the end.
+
+### The skeleton
+
+```text
+mongodb://USER:PASS@HOST1:PORT,HOST2:PORT,HOST3:PORT/DB_NAME?OPTIONS
+```
+
+### The final result
+
+The final result will look something like this:
+
+```text
+mongodb://<username>:<password>@ac-mvh7i5b-shard-00-00.egxt9uu.mongodb.net:27017,ac-mvh7i5b-shard-00-01.egxt9uu.mongodb.net:27017,ac-mvh7i5b-shard-00-02.egxt9uu.mongodb.net:27017/test?ssl=true&authSource=admin&retryWrites=true&w=majority
+```
+
+And voilà! You should be able to successfully connect to your database without the DNS headaches.🎉

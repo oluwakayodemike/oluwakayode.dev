@@ -145,6 +145,14 @@ body {
   padding-left: theme("spacing.6");
 }
 
+.writing-content ul {
+  list-style-type: disc;
+}
+
+.writing-content ol {
+  list-style-type: decimal;
+}
+
 .writing-content li {
   margin-block: theme("spacing.1");
   color: color-mix(in srgb, var(--text-primary) 80%, transparent);
