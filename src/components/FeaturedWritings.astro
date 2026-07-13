@@ -12,8 +12,7 @@ const allWritings = await getCollection(
 
 const writings: Writing[] = allWritings
   .sort(
-    (a: Writing, b: Writing) =>
-      b.data.date.valueOf() - a.data.date.valueOf(),
+    (a: Writing, b: Writing) => b.data.date.valueOf() - a.data.date.valueOf(),
   )
   .slice(0, 5);
 
@@ -38,8 +37,8 @@ function formatDate(date: string | Date) {
   <ul role="list" class="">
     {
       writings.map((post: Writing) => {
-        const href = post.data.external_url ?? `/writings/${post.id}`;
         const isExternal = !!post.data.external_url;
+        const externalUrl = post.data.external_url;
         return (
           <li class="flex items-baseline gap-5 py-4">
             <time
@@ -48,21 +47,28 @@ function formatDate(date: string | Date) {
             >
               {formatDate(post.data.date)}
             </time>
-            <a
-              href={href}
-              target={isExternal ? "_blank" : "_self"}
-              rel={isExternal ? "noopener noreferrer" : ""}
-              class="text-sm leading-snug text-ink/80 underline underline-offset-4 transition-colors hover:text-primary-400 flex items-center flex-wrap gap-1"
-            >
-              {post.data.title}
-              {isExternal && (
-                <span
-                  class="inline-flex opacity-40"
-                  aria-label="external link"
-                  set:html={externalLinkIcon}
-                />
+            <div class="flex min-w-0 flex-1 items-start gap-2">
+              <a
+                href={`/writings/${post.id}`}
+                class="min-w-0 text-sm leading-snug text-ink/80 underline underline-offset-4 transition-colors hover:text-primary-400"
+              >
+                {post.data.title}
+              </a>
+              {isExternal && externalUrl && (
+                <a
+                  href={externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Read ${post.data.title} on the original site`}
+                  class="mt-0.5 inline-flex text-muted transition-colors hover:text-primary-400"
+                >
+                  <span
+                    class="inline-flex opacity-40 [&>svg]:h-3.5 [&>svg]:w-3.5"
+                    set:html={externalLinkIcon}
+                  />
+                </a>
               )}
-            </a>
+            </div>
           </li>
         );
       })

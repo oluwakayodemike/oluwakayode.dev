@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import externalLinkIcon from "../../icons/external-link.svg?raw";
 
 export interface Props {
   post: CollectionEntry<"writings">;
@@ -9,22 +10,40 @@ const {
   post: { data, id },
 } = Astro.props;
 
-const href = data.external_url ?? `/writings/${id}`;
+const href = `/writings/${id}`;
 const isExternal = !!data.external_url;
+const externalUrl = data.external_url;
 
 const dateObj = new Date(data.date);
 const formattedDate = dateObj.toLocaleDateString("en-GB");
 ---
 
 <article class="group flex flex-col mb-5 last:mb-0">
-  <a
-    href={href}
-    target={isExternal ? "_blank" : "_self"}
-    rel={isExternal ? "noopener noreferrer" : undefined}
-    class="inline-block text-lg font-bold text-ink mb-2 no-underline hover:underline decoration-line underline-offset-4 decoration-2 decoration-secondary-900 dark:decoration-secondary-400"
-  >
-    {data.title}
-  </a>
+  <div class="mb-2 flex items-start gap-2">
+    <a
+      href={href}
+      class="flex-1 text-lg font-bold text-ink no-underline hover:underline decoration-line underline-offset-4 decoration-2 decoration-secondary-900 dark:decoration-secondary-400"
+    >
+      {data.title}
+    </a>
+
+    {
+      isExternal && externalUrl && (
+        <a
+          href={externalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Read ${data.title} on the original site`}
+          class="mt-1 inline-flex text-muted transition-colors hover:text-primary-400"
+        >
+          <span
+            class="inline-flex opacity-60 [&>svg]:h-3.5 [&>svg]:w-3.5"
+            set:html={externalLinkIcon}
+          />
+        </a>
+      )
+    }
+  </div>
 
   {
     data.description && (
