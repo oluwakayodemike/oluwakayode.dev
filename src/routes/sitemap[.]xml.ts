@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getRouterInstance } from "@tanstack/react-start";
 import { posts } from "@/data/portfolio";
+import { SITE_ORIGIN } from "@/lib/site";
 import { sitemapPathForLocation, sitemapStaticPaths, sitemapXML, type SitemapEntry } from "@/lib/sitemap";
 
-const BASE_URL = "https://oluwakayode.dev";
+const BASE_URL = SITE_ORIGIN;
 
 export const Route = createFileRoute("/sitemap.xml")({
   staticData: { sitemap: false },

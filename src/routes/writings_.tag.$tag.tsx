@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Shell } from "@/components/site/Shell";
 import { formatPostDate, profile } from "@/data/portfolio";
 import { ogImageMeta } from "@/lib/seo";
-import { getRequestOrigin } from "@/lib/origin.functions";
+import { SITE_ORIGIN } from "@/lib/site";
 import { postsWithTag, projectsWithTag, same, sortedTags, tagIndex } from "@/lib/tags";
 
 export const Route = createFileRoute("/writings_/tag/$tag")({
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/writings_/tag/$tag")({
   loader: async ({ params }) => {
     if (postsWithTag(params.tag).length + projectsWithTag(params.tag).length === 0)
       throw notFound();
-    return { origin: await getRequestOrigin() };
+    return { origin: SITE_ORIGIN };
   },
   head: ({ params, loaderData }) => {
     const title = `Tagged ${params.tag} | ${profile.metaName}`;

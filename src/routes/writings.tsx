@@ -9,11 +9,11 @@ import {
   writingsTitle,
   ogImageMeta,
 } from "@/lib/seo";
-import { getRequestOrigin } from "@/lib/origin.functions";
+import { SITE_ORIGIN } from "@/lib/site";
 
 export const Route = createFileRoute("/writings")({
   staticData: { sitemap: true },
-  loader: async () => ({ origin: await getRequestOrigin() }),
+  loader: () => ({ origin: SITE_ORIGIN }),
   head: ({ loaderData }) => ({
     meta: [
       { title: writingsTitle },

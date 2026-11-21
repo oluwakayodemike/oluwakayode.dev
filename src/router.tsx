@@ -12,6 +12,8 @@ export const getRouter = () => {
     scrollRestoration: true,
     // lets query own freshness; set caching defaults on the queryclient, not the router.
     defaultPreloadStaleTime: 0,
+    // starts loading a page on hover or touch so the click feels instant.
+    defaultPreload: "intent",
   });
 
   return router;

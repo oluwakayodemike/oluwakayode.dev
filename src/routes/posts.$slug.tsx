@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { formatPostDate, posts, profile } from "@/data/portfolio";
 import { articleStructuredData, jsonLdScript, ogImageMeta, postOgImagePath } from "@/lib/seo";
-import { getRequestOrigin } from "@/lib/origin.functions";
+import { SITE_ORIGIN } from "@/lib/site";
 import { sortedTags } from "@/lib/tags";
 
 export const Route = createFileRoute("/posts/$slug")({
   staticData: { sitemap: true },
-  loader: async () => ({ origin: await getRequestOrigin() }),
+  loader: () => ({ origin: SITE_ORIGIN }),
   head: ({ params, loaderData }) => {
     const post = posts.find((p) => p.slug === params.slug);
     const title = `${post?.title ?? "Post not found"} | ${profile.metaName}`;
