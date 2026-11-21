@@ -29,9 +29,9 @@ describe("portfolio structured data", () => {
     });
   });
 
-  it("identifies both mko and the full name in homepage search metadata", () => {
-    expect(homeTitle).toContain("Michael Kayode Oluwasegun (mko)");
-    expect(homeDescription).toContain("Michael Kayode Oluwasegun, also known as mko");
+  it("identifies both mko and the short name in homepage search metadata", () => {
+    expect(homeTitle).toContain("Michael K.O | Software & Equity Research");
+    expect(homeDescription).toContain("Michael K.O, also known as mko");
   });
 
   it("keeps draft posts out of the public writing collection schema", () => {

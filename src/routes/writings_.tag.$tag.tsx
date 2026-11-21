@@ -12,7 +12,7 @@ export const Route = createFileRoute("/writings_/tag/$tag")({
     return { origin: await getRequestOrigin() };
   },
   head: ({ params, loaderData }) => {
-    const title = `Writing tagged ${params.tag} | ${profile.name}`;
+    const title = `Writing tagged ${params.tag} | ${profile.metaName}`;
     const description = `Everything I've written about ${params.tag}.`;
     const url = `/writings/tag/${encodeURIComponent(params.tag)}`;
     return {
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/writings_/tag/$tag")({
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
-        ...ogImageMeta(loaderData?.origin, "writings", `Writings by ${profile.name}`),
+        ...ogImageMeta(loaderData?.origin, "writings", `Writings by ${profile.metaName}`),
       ],
       links: [{ rel: "canonical", href: url }],
     };

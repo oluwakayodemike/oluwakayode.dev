@@ -3,7 +3,7 @@ import { Shell } from "@/components/site/Shell";
 import { galleryPhotos } from "@/data/gallery";
 import { profile } from "@/data/portfolio";
 
-const title = `Gallery | ${profile.name} (${profile.brand.replace(/\.$/, "")})`;
+const title = `Gallery | ${profile.metaName} (${profile.brand.replace(/\.$/, "")})`;
 const description =
   "Random images go here. Ink drawings of trees, streets, doors, and water, whatever I find amusing.";
 

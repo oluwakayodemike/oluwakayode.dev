@@ -4,12 +4,12 @@ const personId = "/#person";
 const websiteId = "/#website";
 const searchName = profile.brand.replace(/\.$/, "");
 
-export const homeTitle = `${profile.name} (${searchName}) | Software & Equity Research`;
-export const homeDescription = `I'm ${profile.name}, also known as ${searchName}. I study at FUTA, build backend software, explore local-first tools, and do equity research in Lagos.`;
-export const projectsTitle = `Projects | ${profile.name} (${searchName})`;
-export const projectsDescription = `Software projects by ${profile.name}, from a streetwear store to a security agent and a terminal email client. A closer look at what I've built.`;
-export const writingsTitle = `Writings | ${profile.name} (${searchName})`;
-export const writingsDescription = `Occasional writing by ${profile.name} on software, debugging, and the odd finance thought.`;
+export const homeTitle = `${profile.metaName} | Software & Equity Research`;
+export const homeDescription = `I'm ${profile.metaName}, also known as ${searchName}. I study at FUTA, build backend software, explore local-first tools, and do equity research in Lagos.`;
+export const projectsTitle = `Projects | ${profile.metaName}`;
+export const projectsDescription = `Software projects by ${profile.metaName}, from a streetwear store to a security agent and a terminal email client. A closer look at what I've built.`;
+export const writingsTitle = `Writings | ${profile.metaName}`;
+export const writingsDescription = `Occasional writing by ${profile.metaName} on software, debugging, and the odd finance thought.`;
 
 const person = {
   "@type": "Person",
@@ -27,7 +27,7 @@ const website = {
   "@type": "WebSite",
   "@id": websiteId,
   name: profile.brand,
-  alternateName: [searchName, `${profile.name} Portfolio`],
+  alternateName: [searchName, `${profile.metaName} Portfolio`],
   url: "/",
   inLanguage: "en",
   creator: { "@id": personId },

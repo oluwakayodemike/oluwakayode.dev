@@ -22,7 +22,7 @@ export const Route = createFileRoute("/writings")({
       { property: "og:url", content: "/writings" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      ...ogImageMeta(loaderData?.origin, "writings", `Writings by ${profile.name}`),
+      ...ogImageMeta(loaderData?.origin, "writings", `Writings by ${profile.metaName}`),
     ],
     links: [{ rel: "canonical", href: "/writings" }],
     scripts: [jsonLdScript(writingsStructuredData(posts))],

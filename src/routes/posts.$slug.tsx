@@ -11,7 +11,7 @@ export const Route = createFileRoute("/posts/$slug")({
   loader: async () => ({ origin: await getRequestOrigin() }),
   head: ({ params, loaderData }) => {
     const post = posts.find((p) => p.slug === params.slug);
-    const title = `${post?.title ?? "Post not found"} | ${profile.name}`;
+    const title = `${post?.title ?? "Post not found"} | ${profile.metaName}`;
     const description = post?.excerpt ?? "This article could not be found.";
     const url = `/posts/${params.slug}`;
     const structuredData = post ? articleStructuredData(post) : undefined;
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/posts/$slug")({
         ...ogImageMeta(
           loaderData?.origin,
           post ? postOgImagePath(post) : "writings",
-          post?.title ?? `Writing by ${profile.name}`,
+          post?.title ?? `Writing by ${profile.metaName}`,
         ),
         ...(!post || post.sample ? [{ name: "robots", content: "noindex" }] : []),
       ],

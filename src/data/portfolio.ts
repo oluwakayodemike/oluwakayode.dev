@@ -5,13 +5,14 @@ const connectedSuccess = { url: "/media/mongodb-connected-successfully.webp" };
 
 export const profile = {
   name: "Michael Kayode Oluwasegun",
+  metaName: "Michael K.O",
   brand: "mko.",
   alternateNames: ["mko", "Michael Oluwasegun"],
   short: "Michael",
   role: "Developer & Financial Analyst",
   location: "Lagos, NG",
   timezone: "Africa/Lagos",
-  initials: "MO",
+  initials: "MKO",
   email: "michaelaykay@gmail.com",
   github: "oluwakayodemike",
   links: {

@@ -56,7 +56,7 @@ export function Shell({ children }: { children: ReactNode }) {
           <div className="flex flex-col items-center gap-5 sm:gap-6">
             <div className="min-w-0">
               <p className="font-display text-[1.65rem] leading-tight text-foreground">
-                {profile.name}
+                {profile.metaName}
               </p>
               <a
                 href={`mailto:${profile.email}`}
@@ -96,7 +96,7 @@ export function Shell({ children }: { children: ReactNode }) {
             </nav>
           </div>
           <p className="mt-7 font-mono text-[0.6875rem] leading-relaxed sm:mt-8">
-            © {new Date().getFullYear()} {profile.name} | All rights reserved.
+            © {new Date().getFullYear()} {profile.metaName} | All rights reserved.
           </p>
         </div>
       </footer>

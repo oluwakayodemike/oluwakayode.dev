@@ -21,7 +21,7 @@ export const Route = createFileRoute("/projects")({
       { property: "og:url", content: "/projects" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      ...ogImageMeta(loaderData?.origin, "projects", `Projects by ${profile.name}`),
+      ...ogImageMeta(loaderData?.origin, "projects", `Projects by ${profile.metaName}`),
     ],
     links: [{ rel: "canonical", href: "/projects" }],
     scripts: [jsonLdScript(projectsStructuredData(projects))],
