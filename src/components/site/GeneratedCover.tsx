@@ -42,8 +42,19 @@ export function GeneratedCover({
       <div className="cover-tagline-band">
         <p className="cover-tagline font-mono">{tagline}</p>
       </div>
-      <span className="cover-colophon font-display" aria-hidden="true">
-        ✳
+      <span className="cover-colophon" aria-hidden="true">
+        <svg
+          className="inline-block h-[1em] w-[1em] align-top"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.3"
+          strokeLinecap="round"
+          focusable="false"
+          aria-hidden="true"
+        >
+          <path d="M12 3.5v17M4.6 7.8l14.8 8.4M19.4 7.8 4.6 16.2" />
+        </svg>
       </span>
     </div>
   );

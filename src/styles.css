@@ -250,14 +250,14 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em, .font-display em { font-style: italic;
   align-items: center; justify-content: center; text-align: center;
 }
 .cover-title-band { top: 24%; height: 35%; padding: 0 4%; }
-.cover-title { font-size: 36px; line-height: 1; text-wrap: balance; overflow-wrap: anywhere; letter-spacing: 0; }
-[data-long-name="true"] .cover-title { font-size: 27px; }
+.cover-title { font-size: 32px; line-height: 1; text-wrap: balance; overflow-wrap: anywhere; letter-spacing: 0; }
+[data-long-name="true"] .cover-title { font-size: 24px; }
 .cover-tagline-band { top: 59%; height: 22%; padding: 0 6%; }
 .cover-tagline { font-size: 9px; line-height: 1.6; text-wrap: balance; letter-spacing: 0; }
 .cover-colophon { position: absolute; top: 84%; left: 0; right: 0; text-align: center; font-size: 18px; line-height: 1; }
 @container (min-width: 450px) {
-  .cover-title { font-size: 54px; }
-  [data-long-name="true"] .cover-title { font-size: 40px; }
+  .cover-title { font-size: 48px; }
+  [data-long-name="true"] .cover-title { font-size: 36px; }
   .cover-tagline { font-size: 11px; }
   .cover-edition { font-size: 10px; }
   .cover-colophon { font-size: 24px; }
