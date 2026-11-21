@@ -34,7 +34,7 @@ export const Route = createFileRoute("/writings")({
 function Writings() {
   return (
     <Shell>
-      <h1 className="font-display text-[2.4rem] leading-[1.1] tracking-tight sm:text-5xl">
+      <h1 className="font-display text-[2.4rem] leading-[1.1] tracking-tight sm:text-5xl md:text-[2.6rem]">
         Pull up a chair,
         <br />
         I'm thinking <em>out loud.</em>
