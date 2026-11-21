@@ -276,7 +276,7 @@ export function ProjectItem({
           {tags.map((t) => (
             <span
               key={t}
-              className="bg-tag px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-tag-foreground md:px-2.5 md:py-0.5 md:text-[0.56rem]"
+              className="bg-tag px-3 py-1 font-sans text-[0.62rem] tracking-normal text-tag-foreground md:px-2.5 md:py-0.5 md:text-[0.56rem]"
             >
               {t}
             </span>

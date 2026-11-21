@@ -25,7 +25,7 @@ export function WritingList({ posts, showTags = false }: { posts: Post[]; showTa
                   key={t}
                   to="/writings/tag/$tag"
                   params={{ tag: t }}
-                  className="bg-tag px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-tag-foreground transition-opacity hover:opacity-75"
+                  className="bg-tag px-3 py-1 font-sans text-[0.62rem] tracking-normal text-tag-foreground transition-opacity hover:opacity-75"
                 >
                   {t}
                 </Link>

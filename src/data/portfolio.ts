@@ -66,7 +66,7 @@ const projectList: Project[] = [
     live: "https://biad.store/",
     description:
       "A freelance build I took from zero to launch. It handles the whole journey: browsing the drops, paying securely through Paystack, and getting orders out the door.",
-    tags: ["Next.js", "TypeScript", "Sanity", "Paystack", "Resend", "Redis"],
+    tags: ["next.js", "typescript", "sanity", "paystack"],
     metrics: [],
   },
   {
@@ -79,16 +79,7 @@ const projectList: Project[] = [
     demo: "https://www.youtube.com/watch?v=e8mCmHSdUs0",
     description:
       "Built for the Splunk Agentic Ops Hackathon 2026. Security teams usually know their detection gaps but closing them is slow. ARIA audits Splunk coverage against MITRE ATT&CK, generates SPL detections with AI, validates them against Splunk, and stages them for human approval before deployment.",
-    tags: [
-      "Python",
-      "FastAPI",
-      "Splunk",
-      "MITRE ATT&CK",
-      "Gemini",
-      "React",
-      "Vite",
-      "Tailwind CSS",
-    ],
+    tags: ["python", "fastapi", "splunk", "gemini"],
     metrics: [],
   },
   {
@@ -100,18 +91,7 @@ const projectList: Project[] = [
     repo: "https://github.com/oluwakayodemike/ReuniteAI",
     description:
       "I built ReuniteAI to help students find lost belongings without digging through campus group chats. It compares photos with CLIP embeddings and descriptions with TiDB search to find likely matches. Kimi reviews ownership claims, with Gemini as a fallback, and approved claims get a pickup code. Students can track their reports and get notifications when a possible match turns up.",
-    tags: [
-      "JavaScript",
-      "Node.js",
-      "Express",
-      "OpenAI CLIP",
-      "BentoML",
-      "Kimi AI",
-      "Gemini",
-      "TiDB",
-      "Clerk",
-      "Cloudinary",
-    ],
+    tags: ["node.js", "express", "openai clip", "tidb"],
     metrics: [],
   },
   {
@@ -123,7 +103,7 @@ const projectList: Project[] = [
     repo: "https://github.com/oluwakayodemike/EnDe-Crypt",
     description:
       "One of the first things I built that I still stand by. You point it at a file, it encrypts the contents with Fernet and leaves the file format untouched, then hands you a key you have to look after yourself. Put the key back in and the file comes back exactly as it was.",
-    tags: ["Python", "cryptography", "Fernet", "CLI"],
+    tags: ["python", "fernet", "cli"],
     metrics: [],
   },
   {
@@ -136,7 +116,7 @@ const projectList: Project[] = [
     repo: "https://github.com/oluwakayodemike/term-mail",
     description:
       "A work in progress. It talks to Gmail through the API, and I'm still building out the basics: viewing and reading mail properly from the command line, with a Textual interface you can move through with the keyboard. The part I'm most excited about is still ahead of me: telling an AI to draft a reply for you, right there in the terminal.",
-    tags: ["Python", "Gmail API", "Textual", "CLI", "OAuth"],
+    tags: ["python", "gmail api", "textual"],
     metrics: [],
   },
 ];

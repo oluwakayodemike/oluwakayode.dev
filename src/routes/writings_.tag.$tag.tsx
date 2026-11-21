@@ -76,7 +76,7 @@ function TagPage() {
 
       <nav
         aria-label="All tags"
-        className="mt-8 flex flex-wrap items-baseline font-mono text-[0.72rem] leading-[2.1] text-muted-foreground"
+        className="mt-8 flex flex-wrap items-baseline font-sans text-[0.72rem] tracking-normal leading-[2.1] text-muted-foreground"
       >
         {index.map(([t, n], i) => {
           const active = same(t, tag);
@@ -126,7 +126,7 @@ function TagPage() {
                   </span>
                 </Link>
                 {post.tags && (
-                  <p className="mt-3 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted-foreground">
+                  <p className="mt-3 font-sans text-[0.65rem] tracking-normal text-muted-foreground">
                     {post.tags.map((t, i) => (
                       <span key={t}>
                         <Link
