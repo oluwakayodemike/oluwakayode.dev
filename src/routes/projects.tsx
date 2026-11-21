@@ -38,7 +38,7 @@ function Projects() {
         <br />
         <em>working on.</em>
       </h1>
-      <p className="mt-6 max-w-[30rem] leading-relaxed text-muted-foreground text-pretty md:mt-5 md:text-[0.9rem]">
+      <p className="mt-6 max-w-[30rem] leading-relaxed text-muted-foreground text-pretty md:mt-5 md:max-w-none md:text-[0.9rem]">
         Things I made to explore, to learn, or just because they seemed cool. If it's here, I'd use
         it myself.
       </p>
