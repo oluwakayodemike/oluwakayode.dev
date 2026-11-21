@@ -6,6 +6,14 @@ import { Button } from "@/components/ui/button";
 import { GeneratedCover } from "./GeneratedCover";
 import { Clock } from "./Clock";
 
+const socialLinks = [
+  { label: "GitHub", href: profile.links.github },
+  { label: "LinkedIn", href: profile.links.linkedin },
+  { label: "X", href: profile.links.x },
+  { label: "Instagram", href: profile.links.instagram },
+  // { label: "Résumé", href: profile.links.resume },
+];
+
 export function Shell({ children }: { children: ReactNode }) {
   const initialClockTime = useLoaderData({ from: "__root__" })?.initialClockTime;
   const [dark, setDark] = useState(false);
@@ -70,30 +78,16 @@ export function Shell({ children }: { children: ReactNode }) {
               aria-label="Social links"
               className="flex flex-wrap justify-center gap-x-5 gap-y-3 font-mono text-[0.75rem] leading-relaxed"
             >
-              <a
-                className="link-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
-                href={profile.links.github}
-              >
-                GitHub
-              </a>
-              <a
-                className="link-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
-                href={profile.links.linkedin}
-              >
-                LinkedIn
-              </a>
-              <a
-                className="link-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
-                href={profile.links.x}
-              >
-                X
-              </a>
-              <a
-                className="link-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
-                href={profile.links.resume}
-              >
-                Résumé
-              </a>
+              {socialLinks.map(({ label, href }) => (
+                <a
+                  key={label}
+                  className="link-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+                  href={href}
+                  {...(href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}
+                >
+                  {label}
+                </a>
+              ))}
             </nav>
           </div>
           <p className="mt-7 font-mono text-[0.6875rem] leading-relaxed sm:mt-8">
