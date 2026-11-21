@@ -8,6 +8,7 @@ const description =
   "Random images go here. Ink drawings of trees, streets, doors, and water, whatever I find amusing.";
 
 export const Route = createFileRoute("/gallery")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title },

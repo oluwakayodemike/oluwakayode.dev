@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as WritingsRouteImport } from './routes/writings'
 import { Route as PostsSlugRouteImport } from './routes/posts.$slug'
 import { Route as WritingsTagTagRouteImport } from './routes/writings_.tag.$tag'
@@ -29,6 +30,11 @@ const GalleryRoute = GalleryRouteImport.update({
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WritingsRoute = WritingsRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/gallery': typeof GalleryRoute
   '/projects': typeof ProjectsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/writings': typeof WritingsRoute
   '/posts/$slug': typeof PostsSlugRoute
   '/writings/tag/$tag': typeof WritingsTagTagRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/gallery': typeof GalleryRoute
   '/projects': typeof ProjectsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/writings': typeof WritingsRoute
   '/posts/$slug': typeof PostsSlugRoute
   '/writings/tag/$tag': typeof WritingsTagTagRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/gallery': typeof GalleryRoute
   '/projects': typeof ProjectsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/writings': typeof WritingsRoute
   '/posts/$slug': typeof PostsSlugRoute
   '/writings_/tag/$tag': typeof WritingsTagTagRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/gallery'
     | '/projects'
+    | '/sitemap.xml'
     | '/writings'
     | '/posts/$slug'
     | '/writings/tag/$tag'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/gallery'
     | '/projects'
+    | '/sitemap.xml'
     | '/writings'
     | '/posts/$slug'
     | '/writings/tag/$tag'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/gallery'
     | '/projects'
+    | '/sitemap.xml'
     | '/writings'
     | '/posts/$slug'
     | '/writings_/tag/$tag'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GalleryRoute: typeof GalleryRoute
   ProjectsRoute: typeof ProjectsRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WritingsRoute: typeof WritingsRoute
   PostsSlugRoute: typeof PostsSlugRoute
   WritingsTagTagRoute: typeof WritingsTagTagRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/writings': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GalleryRoute: GalleryRoute,
   ProjectsRoute: ProjectsRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   WritingsRoute: WritingsRoute,
   PostsSlugRoute: PostsSlugRoute,
   WritingsTagTagRoute: WritingsTagTagRoute,

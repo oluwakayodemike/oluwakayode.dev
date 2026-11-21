@@ -11,6 +11,7 @@ import {
 import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/projects")({
+  staticData: { sitemap: true },
   loader: async () => ({ origin: await getRequestOrigin() }),
   head: ({ loaderData }) => ({
     meta: [

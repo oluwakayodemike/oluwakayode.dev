@@ -8,6 +8,7 @@ import { articleStructuredData, jsonLdScript, ogImageMeta, postOgImagePath } fro
 import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/posts/$slug")({
+  staticData: { sitemap: true },
   loader: async () => ({ origin: await getRequestOrigin() }),
   head: ({ params, loaderData }) => {
     const post = posts.find((p) => p.slug === params.slug);

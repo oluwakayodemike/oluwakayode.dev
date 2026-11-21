@@ -95,6 +95,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  staticData: { sitemap: false },
   loader: () => ({ initialClockTime: formatClockTime() }),
   head: () => ({
     // share images belong to each page, not the shared document

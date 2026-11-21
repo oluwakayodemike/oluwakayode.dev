@@ -6,6 +6,7 @@ import { getRequestOrigin } from "@/lib/origin.functions";
 import { postsWithTag, projectsWithTag, same, tagIndex } from "@/lib/tags";
 
 export const Route = createFileRoute("/writings_/tag/$tag")({
+  staticData: { sitemap: true },
   loader: async ({ params }) => {
     if (postsWithTag(params.tag).length + projectsWithTag(params.tag).length === 0)
       throw notFound();
