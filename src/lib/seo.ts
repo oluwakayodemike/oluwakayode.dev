@@ -16,7 +16,7 @@ const person = {
   "@id": personId,
   name: profile.name,
   alternateName: [profile.brand, ...profile.alternateNames],
-  sameAs: [profile.links.github, profile.links.linkedin, profile.links.x],
+  sameAs: [profile.links.github, profile.links.linkedin, profile.links.x, profile.links.medium, profile.links.instagram],
   url: "/",
   description: homeDescription,
   homeLocation: { "@type": "Place", name: "Lagos, Nigeria" },

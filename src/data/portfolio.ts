@@ -19,6 +19,8 @@ export const profile = {
     github: "https://github.com/oluwakayodemike",
     linkedin: "https://www.linkedin.com/in/oluwakayodemike",
     x: "https://x.com/trulymko",
+    medium: "https://medium.com/@michaelaykay",
+    instagram: "https://www.instagram.com/oluwakayode.dev",
     resume: "#", // todo
   },
   quote: {

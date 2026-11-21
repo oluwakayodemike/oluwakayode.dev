@@ -25,6 +25,8 @@ describe("portfolio structured data", () => {
         "https://github.com/oluwakayodemike",
         "https://www.linkedin.com/in/oluwakayodemike",
         "https://x.com/trulymko",
+        "https://medium.com/@michaelaykay",
+        "https://www.instagram.com/oluwakayode.dev",
       ],
     });
   });
