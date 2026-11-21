@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell } from "@/components/site/Shell";
 import { galleryPhotos } from "@/data/gallery";
 import { profile } from "@/data/portfolio";
+import { SITE_ORIGIN } from "@/lib/site";
 
 const title = `Gallery | ${profile.metaName} (${profile.brand.replace(/\.$/, "")})`;
 const description =
@@ -16,10 +17,10 @@ export const Route = createFileRoute("/gallery")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/gallery" },
+      { property: "og:url", content: `${SITE_ORIGIN}/gallery` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/gallery" }],
+    links: [{ rel: "canonical", href: `${SITE_ORIGIN}/gallery` }],
   }),
   component: Gallery,
 });

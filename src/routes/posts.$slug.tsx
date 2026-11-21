@@ -15,7 +15,7 @@ export const Route = createFileRoute("/posts/$slug")({
     const post = posts.find((p) => p.slug === params.slug);
     const title = `${post?.title ?? "Post not found"} | ${profile.metaName}`;
     const description = post?.excerpt ?? "This article could not be found.";
-    const url = `/posts/${params.slug}`;
+    const url = `${SITE_ORIGIN}/posts/${params.slug}`;
     const structuredData = post ? articleStructuredData(post) : undefined;
     return {
       meta: [

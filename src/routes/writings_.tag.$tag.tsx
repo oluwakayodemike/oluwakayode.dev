@@ -15,7 +15,7 @@ export const Route = createFileRoute("/writings_/tag/$tag")({
   head: ({ params, loaderData }) => {
     const title = `Tagged ${params.tag} | ${profile.metaName}`;
     const description = `My projects and articles tagged ${params.tag}.`;
-    const url = `/writings/tag/${encodeURIComponent(params.tag)}`;
+    const url = `${SITE_ORIGIN}/writings/tag/${encodeURIComponent(params.tag)}`;
     return {
       meta: [
         { title },
