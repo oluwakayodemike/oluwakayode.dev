@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { profile } from "@/data/portfolio";
+import { sortedTags } from "@/lib/tags";
 import { Button } from "@/components/ui/button";
 import { GeneratedCover } from "./GeneratedCover";
 import { Clock } from "./Clock";
@@ -273,13 +274,15 @@ export function ProjectItem({
       </p>
       {tags && tags.length > 0 && (
         <div className="mt-4 flex flex-wrap gap-2 md:mt-3 md:gap-1.5">
-          {tags.map((t) => (
-            <span
+          {sortedTags(tags).map((t) => (
+            <Link
               key={t}
-              className="bg-tag px-3 py-1 font-sans text-[0.62rem] tracking-normal text-tag-foreground md:px-2.5 md:py-0.5 md:text-[0.56rem]"
+              to="/writings/tag/$tag"
+              params={{ tag: t }}
+              className="bg-tag px-3 py-1 font-sans text-[0.62rem] tracking-normal text-tag-foreground transition-opacity hover:opacity-75 focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2 md:px-2.5 md:py-0.5 md:text-[0.56rem]"
             >
               {t}
-            </span>
+            </Link>
           ))}
         </div>
       )}

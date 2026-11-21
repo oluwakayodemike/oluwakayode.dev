@@ -6,6 +6,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { formatPostDate, posts, profile } from "@/data/portfolio";
 import { articleStructuredData, jsonLdScript, ogImageMeta, postOgImagePath } from "@/lib/seo";
 import { getRequestOrigin } from "@/lib/origin.functions";
+import { sortedTags } from "@/lib/tags";
 
 export const Route = createFileRoute("/posts/$slug")({
   staticData: { sitemap: true },
@@ -72,7 +73,7 @@ function Article() {
           </h1>
           {post.tags && post.tags.length > 0 && (
             <div className="mt-4 flex flex-wrap gap-2">
-              {post.tags.map((t) => (
+              {sortedTags(post.tags).map((t) => (
                 <Link
                   key={t}
                   to="/writings/tag/$tag"

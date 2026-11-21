@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { formatPostDate, type Post } from "@/data/portfolio";
+import { sortedTags } from "@/lib/tags";
 
 export function WritingList({ posts, showTags = false }: { posts: Post[]; showTags?: boolean }) {
   return (
@@ -20,7 +21,7 @@ export function WritingList({ posts, showTags = false }: { posts: Post[]; showTa
           </Link>
           {showTags && post.tags && post.tags.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-2">
-              {post.tags.map((t) => (
+              {sortedTags(post.tags).map((t) => (
                 <Link
                   key={t}
                   to="/writings/tag/$tag"

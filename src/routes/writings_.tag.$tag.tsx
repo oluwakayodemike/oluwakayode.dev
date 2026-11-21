@@ -3,7 +3,7 @@ import { Shell } from "@/components/site/Shell";
 import { formatPostDate, profile } from "@/data/portfolio";
 import { ogImageMeta } from "@/lib/seo";
 import { getRequestOrigin } from "@/lib/origin.functions";
-import { postsWithTag, projectsWithTag, same, tagIndex } from "@/lib/tags";
+import { postsWithTag, projectsWithTag, same, sortedTags, tagIndex } from "@/lib/tags";
 
 export const Route = createFileRoute("/writings_/tag/$tag")({
   staticData: { sitemap: true },
@@ -13,8 +13,8 @@ export const Route = createFileRoute("/writings_/tag/$tag")({
     return { origin: await getRequestOrigin() };
   },
   head: ({ params, loaderData }) => {
-    const title = `Writing tagged ${params.tag} | ${profile.metaName}`;
-    const description = `Everything I've written about ${params.tag}.`;
+    const title = `Tagged ${params.tag} | ${profile.metaName}`;
+    const description = `My projects and articles tagged ${params.tag}.`;
     const url = `/writings/tag/${encodeURIComponent(params.tag)}`;
     return {
       meta: [
@@ -61,7 +61,7 @@ function TagPage() {
   const { tag } = Route.useParams();
   const list = postsWithTag(tag);
   const built = projectsWithTag(tag);
-  const index = tagIndex(tag);
+  const index = tagIndex();
   return (
     <Shell>
       <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
@@ -106,7 +106,7 @@ function TagPage() {
           Writing
         </h2>
         {list.length === 0 ? (
-          <p className="mt-5 text-muted-foreground">Nothing written under this one yet.</p>
+          <p className="mt-5 text-muted-foreground">Nothing written under this tag yet.</p>
         ) : (
           <ul className="mt-6 space-y-10">
             {list.map((post) => (
@@ -127,7 +127,7 @@ function TagPage() {
                 </Link>
                 {post.tags && (
                   <p className="mt-3 font-sans text-[0.65rem] tracking-normal text-muted-foreground">
-                    {post.tags.map((t, i) => (
+                    {sortedTags(post.tags).map((t, i, tags) => (
                       <span key={t}>
                         <Link
                           to="/writings/tag/$tag"
@@ -136,7 +136,7 @@ function TagPage() {
                         >
                           {t}
                         </Link>
-                        {i < (post.tags?.length ?? 0) - 1 && (
+                        {i < tags.length - 1 && (
                           <span aria-hidden="true" className="mx-1.5 opacity-40">
                             ·
                           </span>
@@ -151,11 +151,13 @@ function TagPage() {
         )}
       </section>
 
-      {built.length > 0 && (
-        <section className="mt-14">
-          <h2 className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
-            Also built with it
-          </h2>
+      <section className="mt-14">
+        <h2 className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
+          Projects
+        </h2>
+        {built.length === 0 ? (
+          <p className="mt-5 text-muted-foreground">Nothing built under this tag yet.</p>
+        ) : (
           <ul className="mt-5 space-y-3">
             {built.map((p) => (
               <li key={p.name} className="flex items-baseline gap-3">
@@ -169,8 +171,8 @@ function TagPage() {
               </li>
             ))}
           </ul>
-        </section>
-      )}
+        )}
+      </section>
 
       <div className="mt-14">
         <Link
