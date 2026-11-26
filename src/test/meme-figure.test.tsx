@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { posts } from "@/data/portfolio";
+import { posts } from "@/data/blogs";
 import { ArticleBody } from "@/components/site/ArticleBody";
 import { NoCloudMeme } from "@/components/site/NoCloudMeme";
 

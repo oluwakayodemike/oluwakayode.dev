@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { posts } from "@/data/portfolio";
+import { posts } from "@/data/blogs";
 
 describe("retained writing", () => {
   it("keeps only the local-first and Michael's MongoDB articles", () => {

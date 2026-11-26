@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell } from "@/components/site/Shell";
 import { WritingList } from "@/components/site/WritingList";
-import { posts, profile } from "@/data/portfolio";
+import { profile } from "@/data/portfolio";
+import { posts } from "@/data/blogs";
 import {
   jsonLdScript,
   writingsDescription,

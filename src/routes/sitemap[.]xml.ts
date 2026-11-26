@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getRouterInstance } from "@tanstack/react-start";
-import { posts } from "@/data/portfolio";
+import { posts } from "@/data/blogs";
 import { SITE_ORIGIN } from "@/lib/site";
 import { sitemapPathForLocation, sitemapStaticPaths, sitemapXML, type SitemapEntry } from "@/lib/sitemap";
 

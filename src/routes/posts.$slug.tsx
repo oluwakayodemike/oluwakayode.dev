@@ -3,7 +3,8 @@ import { Shell } from "@/components/site/Shell";
 import { ArticleBody } from "@/components/site/ArticleBody";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { formatPostDate, posts, profile } from "@/data/portfolio";
+import { formatPostDate, profile } from "@/data/portfolio";
+import { posts } from "@/data/blogs";
 import { articleStructuredData, jsonLdScript, ogImageMeta, postOgImagePath } from "@/lib/seo";
 import { SITE_ORIGIN } from "@/lib/site";
 import { sortedTags } from "@/lib/tags";
@@ -127,7 +128,7 @@ function Article() {
             Draft article, still being refined before publication.
           </p>
         )}
-        <ArticleBody content={post.body ?? post.paragraphs.join("\n\n")} />
+        <ArticleBody content={post.body} />
         {(newer || older) && (
           <nav className="mt-10 grid grid-cols-2 gap-6 sm:mt-16" aria-label="More writing">
             {newer ? (

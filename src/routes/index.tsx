@@ -3,7 +3,8 @@ import { ProjectItem, ScribbleFrame, Section, Shell } from "@/components/site/Sh
 import { WritingList } from "@/components/site/WritingList";
 import { GalleryPeek } from "@/components/site/GalleryPeek";
 import { Toolkit } from "@/components/site/Toolkit";
-import { intro, posts, profile, projects } from "@/data/portfolio";
+import { intro, profile, projects } from "@/data/portfolio";
+import { posts } from "@/data/blogs";
 import {
   homeDescription,
   homeTitle,

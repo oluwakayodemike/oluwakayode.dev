@@ -1,5 +1,4 @@
 """execute the exact python example embedded in the article, in a temporary home."""
-import json
 import os
 from pathlib import Path
 import subprocess
@@ -10,15 +9,8 @@ import unittest
 
 class LocalFirstExample(unittest.TestCase):
     def test_notes_survive_separate_processes_and_handle_quotes(self):
-        result = subprocess.run(
-            ["bun", "-e", 'import { posts } from "./src/data/portfolio.ts"; '
-             'const post = posts.find(p => p.slug === "software-without-a-connection"); '
-             'if (!post?.body) throw new Error("local-first article body is missing"); '
-             'console.log(JSON.stringify(post.body));'],
-            cwd=Path(__file__).parents[2], capture_output=True, text=True,
-        )
-        self.assertEqual(result.returncode, 0, result.stderr)
-        article = json.loads(result.stdout)
+        source = Path(__file__).parents[1] / "data" / "blogs" / "software-without-a-connection.md"
+        article = source.read_text()
         code = article.split("```python\n", 1)[1].split("```", 1)[0]
         with tempfile.TemporaryDirectory() as folder:
             script = Path(folder) / "notes.py"

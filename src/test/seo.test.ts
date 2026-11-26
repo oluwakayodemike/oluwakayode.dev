@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { posts, projects } from "@/data/portfolio";
+import { projects } from "@/data/portfolio";
+import { posts } from "@/data/blogs";
 import {
   articleStructuredData,
   jsonLdScript,
@@ -42,7 +43,7 @@ describe("portfolio structured data", () => {
       title: "Draft",
       date: "2026-11-20",
       excerpt: "Not public",
-      paragraphs: [],
+      body: "",
       sample: true,
     };
     const page = writingsStructuredData([draft])["@graph"][2];
@@ -70,7 +71,7 @@ describe("portfolio structured data", () => {
       title: "A real post",
       date: "2026-11-16",
       excerpt: "My notes",
-      paragraphs: [],
+      body: "",
     };
     expect(articleStructuredData(post)?.["@graph"][2]).toMatchObject({
       "@type": "BlogPosting",

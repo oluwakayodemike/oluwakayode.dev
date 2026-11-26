@@ -1,10 +1,11 @@
 // build-time share card generator. runs in node via the vite plugin, never in the worker.
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, readdir, writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { build } from "esbuild";
 import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
+import { parsePostFile } from "../src/lib/post-file";
 
 const root = path.resolve(import.meta.dirname, "..");
 const fontDir = path.join(root, "scripts/og-fonts");
@@ -32,7 +33,15 @@ async function loadPosts(): Promise<{ posts: Post[]; name: string }> {
   if (!output) throw new Error("Portfolio content could not be loaded for share cards.");
   const code = output.text;
   const mod = await import(`data:text/javascript;base64,${Buffer.from(code).toString("base64")}`);
-  return { posts: mod.posts, name: mod.profile.name };
+  // posts are read straight from the markdown files, the same way the site reads them.
+  const blogDir = path.join(root, "src/data/blogs");
+  const files = (await readdir(blogDir)).filter((file) => file.endsWith(".md"));
+  const posts = await Promise.all(
+    files.map(async (file) =>
+      parsePostFile(file.slice(0, -3), await readFile(path.join(blogDir, file), "utf8")),
+    ),
+  );
+  return { posts, name: mod.profile.name };
 }
 
 function formatDate(date: string) {

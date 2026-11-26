@@ -1,4 +1,5 @@
-import { posts, projects } from "@/data/portfolio";
+import { projects } from "@/data/portfolio";
+import { posts } from "@/data/blogs";
 
 export const same = (a: string, b: string) => a.toLowerCase() === b.toLowerCase();
 
